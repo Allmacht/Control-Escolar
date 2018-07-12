@@ -32,10 +32,29 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto"></ul>
                     <div class="my-2 my-lg-0">
-                        
+                    @guest
                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#login">
                             <i class="fas fa-sign-in-alt"></i>  Iniciar Sesión
                         </button>
+                    @else
+                        <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar Sesión') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -56,8 +75,7 @@
                     <div class="modal-body">
                         <form action="{{ route('login') }}" method="post">
                             @csrf
-                            <div class="form-group">
-                                
+                            <div class="form-group">  
                                 <label for="email">Correo</label>
                                 <input type="email" class="form-control" name="email" placeholder="Ingresa tu email" required autofocus>
 
