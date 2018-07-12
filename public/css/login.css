@@ -1,0 +1,15 @@
+.modal-login .avatar{
+    position: absolute;
+    margin: 0 auto;
+    top: -75px;
+}
+.avatar{
+    margin: 0 auto;
+    font-size: 3rem;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.modal-title{
+    padding-top: 40px;
+}
