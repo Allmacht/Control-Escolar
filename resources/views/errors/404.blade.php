@@ -9,7 +9,8 @@
 </head>
 <style>
     .mensaje{
-        padding-top: 300px;
+        
+        padding-top: 200px;
     }
 </style>
 <body>
@@ -17,8 +18,8 @@
         <div class="row">
             <div class="col-md-12 text-center mensaje">
                 <h1><strong>Error!</strong></h1>
-                <img src="{{ asset('icons/support.png') }}" alt="" class="img-responsive">
-                
+                <img src="{{ asset('icons/support.png') }}" alt="" class="img-responsive"><br><br>
+                <a href="{{ route('inicio') }}" class="btn btn-outline-danger">Regresar al inicio</a>
             </div>
         </div>
     </div>
