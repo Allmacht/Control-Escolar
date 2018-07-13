@@ -48,7 +48,7 @@
     </div>-->
 
     <!-- FIN CÓDIGO ORIGINAL -->
-    
+
     <div class="col-md-10 shadow p-3 mb-5 bg-white rounded">
         <div class="text-center">
             <br>
