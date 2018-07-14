@@ -97,7 +97,7 @@
                                 <label for="email">Correo</label>
                                 <input type="email" class="form-control" name="email" placeholder="Ingresa tu email" required autofocus>
 
-                                 @if ($errors->has('email'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -130,6 +130,7 @@
             </div>
         </div>
         <main class="py-4">
+            
             @yield('content')
         </main>
     </div>

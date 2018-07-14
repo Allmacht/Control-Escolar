@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('inicio');
+Route::get('/', 'Auth\LoginController@index')->name('inicio');
 
 // Authentication Routes...
     Route::get('login', function(){
