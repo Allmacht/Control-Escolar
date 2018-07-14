@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+<!--CÓDIGO ORIGINAL
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -59,6 +63,58 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+FIN CÓDIGO ORIGINAL-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h2>Reiniciar Contraseña</h2>
+            <hr>
+
+            <form method="post" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
+                @csrf
+                 <input type="hidden" name="token" value="{{ $token }}">
+
+                 <div class="col-md-6 offset-md-3">
+                     <div class="form-group">
+                        <label for="email">{{ __('Correo') }}</label>
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" placeholder="Ingresa tu Correo" required autofocus>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                    </div>
+                 </div>
+
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <label for="password">{{ __('Nueva contraseña') }}</label>
+                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Ingresa tu nueva contraseña" required>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <label for="password-confirm">{{ __('Confirmar contraseña') }}</label>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirma tu contraseña" required>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-success">{{ __('Restablecer contraseña') }}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
