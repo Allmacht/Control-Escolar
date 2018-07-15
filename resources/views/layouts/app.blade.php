@@ -155,8 +155,13 @@
         </main>
     </div>
     
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "320px";

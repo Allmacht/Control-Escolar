@@ -20,7 +20,8 @@ class UserController extends Controller
      public function index($id)
     {
         $User = User::findOrfail($id);
-        return view('profile.index', compact('User'));
+        $edit = false;
+        return view('profile.index', compact('User','edit'));
 
     }
 
@@ -64,7 +65,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $User = User::findOrfail($id);
+        $edit = true;
+        return view('profile.index', compact('User','edit'));
     }
 
     /**
@@ -76,7 +79,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $User = User::findOrfail($id);
+
+        if(strlen($request->name)>=3):
+            $User->name = $request->name;
+            $User->email = $request->email;
+            $User->save();
+        endif;
+
+        return redirect()->route('ProfileUser',['id'=>$User->id]);
     }
 
     /**
