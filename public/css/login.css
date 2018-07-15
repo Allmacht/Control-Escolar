@@ -1,3 +1,4 @@
+
 .modal-login .avatar{
     position: absolute;
     margin: 0 auto;
@@ -12,4 +13,86 @@
 }
 .modal-title{
     padding-top: 40px;
+}
+.fa-bars{
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.fa-bars:hover{
+    color: gray;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff; 
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.userIcon{
+    position: relative;
+    left: 20px;
+    top: -150px;
+}
+.userName{
+    position: relative;
+    top: -205px;
+    left: 100px;
+}
+.userEmail{
+    position: relative;
+    top: -215px;
+    left: 100px;
+    font-size: 15px;
+}
+.sidenav a {
+    position: relative;
+   
+}
+.logout {
+    top: -200px;
+    left: 30px;
+}
+.btnPerfil{
+    top: -200px;
+    left: 20px;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #818181;
+}
+.items{
+    position: relative;
+    top: -210px;
+    padding-left: 0;
+    
+}
+.items a{
+    font-size: 18px;
+    color: black;
+}
+.items a:hover{
+    color: black !important;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }

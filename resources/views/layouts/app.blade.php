@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('icons/science.png') }}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,12 +23,16 @@
 </head>
 <body>
     <div id="app">
+        
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @if(Auth::check())
+                <i class="fas fa-bars d-none d-lg-block"  onclick="openNav()"></i>
+            @endif
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('icons/science.png') }}" alt="" width="40px">
                 Control Escolar</a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarText" aria-controls="navbatText" >
-                    <span class="navbar-toggler-icon"></span>
+                <button type="button" class="navbar-toggler" @if(!Auth::check()) data-toggle="collapse" data-target="#navbarText" @endif aria-controls="navbatText" >
+                    <span class="navbar-toggler-icon" @if(Auth::check()) onclick="openNav()"@endif></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto"></ul>
@@ -55,23 +60,11 @@
                                 </div>
                             </div>
                         -->
-
-                        <div class="dropdown">
-                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                <i class="fas fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt"></i> {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                        </div>
+                        
+                        <a href="#" class="btn btn-outline-primary">
+                            <img src="{{ asset('icons/user.png') }}" width="30px">
+                            {{ Auth::user()->name }}
+                        </a>
                         @endguest
                     </div>
                 </div>
@@ -129,12 +122,59 @@
                 </div>
             </div>
         </div>
-        <main class="py-4">
+
+        <div id="mySidenav" class="sidenav shadow-lg">
+            <div class="user">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <img src="{{ asset('images/Material1.png') }}" alt="" width="400px">
+                @if(Auth::check())
+                    <img class="userIcon" src="{{ asset('icons/user.png') }}" alt="" width="70px">
+                    
+                    <h3 class="userName text-white text-capitalize">{{ Auth::user()->name }}</h3>
+                    <p class="text-white userEmail">{{ Auth::user()->email }}</p>
+
+                    <a id="btnPerfil" href="#" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>
+
+                    <a id="btnLogout" href="{{ route('logout') }}" class="btn btn-danger logout" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endif
+            </div>
+            <br>
             
+            <div class="list-group list-group-flush items" id="items">
+                <a href="{{ url('/') }}" class="list-group-item list-group-item-action">{{ __('Inicio') }}</a>
+            </div>
+            
+        </div>
+        <main class="py-4">
             @yield('content')
         </main>
     </div>
+    
     <script src="{{ asset('js/jquery.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "320px";
+            
+            setTimeout(mostrar, 200);
+        }
+        function mostrar(){
+            document.getElementById("btnLogout").style.visibility = "visible";
+            document.getElementById("btnPerfil").style.visibility = "visible";
+            document.getElementById("items").style.visibility = "visible";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("btnLogout").style.visibility = "hidden";
+            document.getElementById("btnPerfil").style.visibility = "hidden";
+            document.getElementById("items").style.visibility = "hidden";
+        }
+    </script>
 </body>
 </html>
