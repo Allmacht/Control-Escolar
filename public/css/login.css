@@ -55,10 +55,12 @@
 .logout {
     top: -200px;
     left: 30px;
+    visibility: hidden;
 }
 .btnPerfil{
     top: -200px;
     left: 20px;
+    visibility: hidden;
 }
 
 .sidenav a:hover {

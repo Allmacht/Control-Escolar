@@ -61,7 +61,7 @@
                             </div>
                         -->
                         
-                        <a href="#" class="btn btn-outline-primary">
+                        <a href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-outline-primary">
                             <img src="{{ asset('icons/user.png') }}" width="30px">
                             {{ Auth::user()->name }}
                         </a>
@@ -133,7 +133,7 @@
                     <h3 class="userName text-white text-capitalize">{{ Auth::user()->name }}</h3>
                     <p class="text-white userEmail">{{ Auth::user()->email }}</p>
 
-                    <a id="btnPerfil" href="#" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>
+                    <a id="btnPerfil" href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>
 
                     <a id="btnLogout" href="{{ route('logout') }}" class="btn btn-danger logout" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">{{ __('Cerrar Sesión') }}</a>

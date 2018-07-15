@@ -15,6 +15,8 @@ Route::get('/', function(){
     return view('welcome');
 })->name('inicio');
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 // Authentication Routes...
     Route::get('login', function(){
         return redirect('/');
@@ -35,5 +37,5 @@ Route::get('/', function(){
 
 
 //Rutas de perfil 
-    
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('perfil/{id}' , 'UserController@index')->name('ProfileUser')->where('id','[0-9]+');
+
