@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label for="name">{{ __('Nombre') }}</label>
                             <input type="text" @if($edit==false) readonly @endif class="form-control" name="name" 
-                                pattern="[A-Z a-z]{3,14}" title="Mínimo 3 caracteres, máximo 14, sin números ni caracteres especiales" value="{{ $User->name }}" required>
+                                pattern="[A-Z a-z]{3,14}" title="Mínimo 3 caracteres, máximo 14, sin números ni caracteres especiales" value="{{ $User->names }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">{{ __('Email') }}</label>

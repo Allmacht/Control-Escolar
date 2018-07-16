@@ -69,7 +69,7 @@
                                      "{{ asset('images/default.png') }}"
                                 @endif
                             width="30px">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->names }}
                         </a>
                         @endguest
                     </div>
@@ -128,7 +128,7 @@
                             "{{ asset('images/default.png') }}"
                         @endif alt="" width="70px">
                     
-                    <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->name }}</h3>
+                    <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->names }}</h3>
                     <p class="text-white userEmail">{{ Auth::user()->email }}</p>
 
                     <a id="btnPerfil" href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>
