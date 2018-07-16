@@ -75,8 +75,8 @@
                     </div>
                 </div>
             </div>
-            
         </nav>
+        
         <div class="modal fade modal-login" id="login" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -94,25 +94,12 @@
                             @csrf
                             <div class="form-group">  
                                 <label for="email">Correo</label>
-                                <input type="email" class="form-control" name="email" placeholder="Ingresa tu email" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-
+                                <input type="email" class="form-control" name="email" placeholder="Ingresa tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autofocus>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
                                 <input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
-
-                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                             </div>
 
                             <div class="text-center">
@@ -162,6 +149,22 @@
             
         </div>
         <main class="py-4">
+            <div class="container">
+                <div class="row">
+                    @if($errors->any())
+                        <div class="col-lg-6 offset-lg-3 col-md-12">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                @foreach ( $errors->all() as $error )
+                                    {{ $error }}
+                                @endforeach
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>

@@ -23,13 +23,14 @@
         <div class="row">
             <div class="col-lg-3 col-xs-12 col-sm-12 pb-5">
                 <div class="card mx-auto shadow" style="width: 15rem;">
+
                     <img class="card-img-top img-responsive" 
                     src=@if(!$User->profile_picture == null)
                             "/images/profile_pictures/{{ $User->profile_picture }}" 
                         @else
                              "{{ asset('images/default.png') }}"
-                        @endif
-                        >
+                        @endif>
+                        
                     <div class="card-body text-center">
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">{{ __('Cambiar imagen') }}</button>
                     </div>

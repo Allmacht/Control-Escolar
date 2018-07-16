@@ -85,7 +85,7 @@ class UserController extends Controller
 
         if($request->hasFile('profile_picture')):
 
-            $result = $this->validate($request,[
+            $this->validate($request,[
                 'profile_picture' => 'required|image|max:3072'
             ]);
 
@@ -95,7 +95,7 @@ class UserController extends Controller
 
             $file = $request->file('profile_picture');
             $name = $User->id;
-            $extesion = $file->getClientOriginalExtension();
+            //$extesion = $file->getClientOriginalExtension();
             $file->move(public_path().'/images/profile_pictures/',$name);
 
             $User->profile_picture = $name;
