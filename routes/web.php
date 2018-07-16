@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         return redirect('/');
     })->name('login');
     
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\LoginController@login')->middleware('guest');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     // Registration Routes...
