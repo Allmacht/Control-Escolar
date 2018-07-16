@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,5 +41,22 @@ class LoginController extends Controller
 
     public function index(){
         return view('welcome');
+    }
+
+    public function login(Request $request){
+
+        $email = $request->email;
+        $password = $request->password;
+
+        if(Auth::attempt(['active'=>1,'email'=>$email, 'password'=>$password])):
+            return redirect()->intended('home');
+        else:
+            return redirect()->route('inicio')->withErrors('Usuario o contraseña incorrectos');
+        endif;
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('inicio');
     }
 }

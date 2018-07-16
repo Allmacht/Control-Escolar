@@ -17,7 +17,7 @@ Route::get('/', function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Authentication Routes...
+    // Authentication Routes...
     Route::get('login', function(){
         return redirect('/');
     })->name('login');
@@ -36,7 +36,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-//Rutas de perfil 
+    //Rutas de perfil 
     Route::get('perfil/{id}' , 'UserController@index')->name('ProfileUser')->where('id','[0-9]+');
     Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id','[0-9]+');
     Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id','[0-9]+');
