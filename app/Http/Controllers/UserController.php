@@ -21,7 +21,8 @@ class UserController extends Controller
     {
         $User = User::findOrfail($id);
         $edit = false;
-        return view('profile.index', compact('User','edit'));
+        $message = null;
+        return view('profile.index', compact('User','edit','message'));
 
     }
 
@@ -67,7 +68,8 @@ class UserController extends Controller
     {
         $User = User::findOrfail($id);
         $edit = true;
-        return view('profile.index', compact('User','edit'));
+        $message = null;
+        return view('profile.index', compact('User','edit','message'));
     }
 
     /**
@@ -81,13 +83,34 @@ class UserController extends Controller
     {
         $User = User::findOrfail($id);
 
-        if(strlen($request->name)>=3):
+        if($request->hasFile('profile_picture')):
+
+            $result = $this->validate($request,[
+                'profile_picture' => 'required|image|max:3072'
+            ]);
+
+            if(\File::exists(public_path('/images/profile_pictures/',$User->id))):
+                \File::delete(public_path('/images/profile_pictures/',$User->id));
+            endif;
+
+            $file = $request->file('profile_picture');
+            $name = $User->id;
+            $extesion = $file->getClientOriginalExtension();
+            $file->move(public_path().'/images/profile_pictures/',$name);
+
+            $User->profile_picture = $name;
+            $User->save();
+            return redirect()->route('ProfileUser',['id'=>$User->id])
+            ->with('status','Foto de perfil actualizada correctamente');
+
+        else:
             $User->name = $request->name;
             $User->email = $request->email;
             $User->save();
         endif;
 
-        return redirect()->route('ProfileUser',['id'=>$User->id]);
+        return redirect()->route('ProfileUser',['id'=>$User->id])
+        ->with('status','Información actualizada exitosamente');
     }
 
     /**

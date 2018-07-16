@@ -23,9 +23,15 @@
         <div class="row">
             <div class="col-lg-3 col-xs-12 col-sm-12 pb-5">
                 <div class="card mx-auto shadow" style="width: 15rem;">
-                    <img class="card-img-top img-responsive" src="{{ asset('images/persona1.jpg') }}" >
+                    <img class="card-img-top img-responsive" 
+                    src=@if(!$User->profile_picture == null)
+                            "/images/profile_pictures/{{ $User->profile_picture }}" 
+                        @else
+                             "{{ asset('images/default.png') }}"
+                        @endif
+                        >
                     <div class="card-body text-center">
-                        <button class="btn btn-outline-success">{{ __('Cambiar imagen') }}</button>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">{{ __('Cambiar imagen') }}</button>
                     </div>
                 </div>
             </div>
@@ -46,12 +52,34 @@
                     @endif
                 </div>
                 <div class="col-lg-8 col-md-12 col-xs-12 offset-lg-2 pb-3">
+                    @if(session('status'))
+                        <div class="col-lg-12">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
+                    @if($errors->any())
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                @foreach ( $errors->all() as $error )
+                                    {{ $error }}
+                                @endforeach
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                     <form action="{{ route('ProfileUpdate',['id'=>$User->id]) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">{{ __('Nombre') }}</label>
                             <input type="text" @if($edit==false) readonly @endif class="form-control" name="name" 
-                                pattern="[A-Z a-z]{3,}" title="Mínimo 3 caracteres, sin números ni caracteres especiales" value="{{ $User->name }}" required>
+                                pattern="[A-Z a-z]{3,14}" title="Mínimo 3 caracteres, máximo 14, sin números ni caracteres especiales" value="{{ $User->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">{{ __('Email') }}</label>
@@ -66,6 +94,32 @@
                     </form>
                    
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalPerfil" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>{{ __('Foto de perfil') }}</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('ProfileUpdate',['id'=>$User->id]) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="profile_picture">{{ __('Selecciona una imagen') }}</label>
+                            <input type="file" class="form-control-file" name="profile_picture">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                        <button type="submit" class="btn btn-outline-success">{{ __('Actualizar Imagen') }}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

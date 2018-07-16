@@ -61,8 +61,14 @@
                             </div>
                         -->
                         
-                        <a href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-outline-primary">
-                            <img src="{{ asset('icons/user.png') }}" width="30px">
+                        <a href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="right" title="Mi perfil">
+                            <img class="rounded-circle"
+                            src=@if(!Auth::user()->profile_picture == null)
+                                    "/images/profile_pictures/{{ Auth::user()->id }}"
+                                @else
+                                     "{{ asset('images/default.png') }}"
+                                @endif
+                            width="30px">
                             {{ Auth::user()->name }}
                         </a>
                         @endguest
@@ -128,9 +134,14 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <img src="{{ asset('images/Material1.png') }}" alt="" width="400px">
                 @if(Auth::check())
-                    <img class="userIcon" src="{{ asset('icons/user.png') }}" alt="" width="70px">
+                    <img class="userIcon rounded-circle" 
+                    src=@if(!Auth::user()->profile_picture == null)
+                            "/images/profile_pictures/{{ Auth::user()->id }}"
+                        @else
+                            "{{ asset('images/default.png') }}"
+                        @endif alt="" width="70px">
                     
-                    <h3 class="userName text-white text-capitalize">{{ Auth::user()->name }}</h3>
+                    <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->name }}</h3>
                     <p class="text-white userEmail">{{ Auth::user()->email }}</p>
 
                     <a id="btnPerfil" href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>
