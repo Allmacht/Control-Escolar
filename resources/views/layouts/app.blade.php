@@ -26,7 +26,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             @if(Auth::check())
-                <i class="fas fa-bars d-none d-lg-block"  onclick="openNav()"></i>
+                <i class="fas fa-bars d-none d-lg-block "  onclick="openNav()"></i>
             @endif
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('icons/science.png') }}" alt="" width="40px">
@@ -69,7 +69,7 @@
                                      "{{ asset('images/default.png') }}"
                                 @endif
                             width="30px">
-                            {{ Auth::user()->names }}
+                            {{ Auth::user()->name }}
                         </a>
                         @endguest
                     </div>
@@ -128,7 +128,7 @@
                             "{{ asset('images/default.png') }}"
                         @endif alt="" width="70px">
                     
-                    <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->names }}</h3>
+                    <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->name }}</h3>
                     <p class="text-white userEmail">{{ Auth::user()->email }}</p>
 
                     <a id="btnPerfil" href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-primary btnPerfil">{{ __('Mi perfil') }}</a>

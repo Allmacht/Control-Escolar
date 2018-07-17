@@ -14,15 +14,46 @@
             text-decoration: none;
             color: black;
         }
+        .fa-chevron-circle-down{
+            font-size: 1.4rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
         .fa-times .fa-edit:hover{
             color: #7a7a7a;
         }
+
+        .portada{
+            width: 1300px;
+            height: 400px;
+        }
+        .img-portada{
+            padding-left: -20px;
+            padding-right: -20px;
+            z-index: -1 !important;
+        }
+        .info{
+          position: relative;
+           top:-150px;
+           z-index: 1;
+        }
+        .datos{
+            background: white;
+            
+        }
     </style>
-    
-    <div class="container">
+    <div class="container" style="z-index: 0;">
+        <div class="row img-portada">
+            <div class="col-md-12">
+                <img class="img-thumbnail portada" src="{{ asset('images/Material.jpg') }}" alt="responsive image">
+            </div>
+        </div>
+    </div>
+    <div class="container info">
         <div class="row">
-            <div class="col-lg-3 col-xs-12 col-sm-12 pb-5">
-                <div class="card mx-auto shadow" style="width: 15rem;">
+            <div class="col-lg-3 d-none d-lg-block pb-5 sticky-top">
+                <div class="card mx-auto" style="width: 15rem;">
 
                     <img class="card-img-top img-responsive" 
                     src=@if(!$User->profile_picture == null)
@@ -36,7 +67,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-xs-12 col-sm-12 shadow">
+            
+            <div class="col-lg-9 col-xs-12 col-sm-12 shadow datos">
                 <div class="col-md-12 my-3">
                     <h4 class="text-center">{{ __('Perfil') }}</h4>
                     <hr>
@@ -78,9 +110,9 @@
                     <form action="{{ route('ProfileUpdate',['id'=>$User->id]) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="name">{{ __('Nombre') }}</label>
+                            <label for="name">{{ __('Nombre de usuario') }}</label>
                             <input type="text" @if($edit==false) readonly @endif class="form-control" name="name" 
-                                pattern="[A-Z a-z]{3,14}" title="Mínimo 3 caracteres, máximo 14, sin números ni caracteres especiales" value="{{ $User->names }}" required>
+                                pattern="[A-Z a-z]{3,14}" title="Mínimo 3 caracteres, máximo 14, sin números ni caracteres especiales" value="{{ $User->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">{{ __('Email') }}</label>
@@ -93,7 +125,147 @@
                             </div>
                         @endif
                     </form>
-                   
+                </div>
+            </div>
+           
+            <div class="col-lg-9 shadow py-3 my-3 offset-lg-3">
+                <div class="col-md-12 my-3">
+                    <h4 class="text-center">{{ __('Información personal') }}</h4>
+                    <hr>
+                </div>
+                <div class="col-lg-8 col-md-12 col-xs-12 offset-lg-2 pb-3" id="info_personal">
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="names">{{ __('Nombres') }}</label>
+                            <input type="text" class="form-control" @if($edit==false) readonly @endif name="names" required value="{{ $User->names }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paternal_surname">{{ __('Apellido Paterno') }}</label>
+                            <input type="text" name="paternal_surname" class="form-control" @if($edit==false) readonly @endif value="{{ $User->paternal_surname }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maternal_surname">{{ __('Apellido Materno') }}</label>
+                            <input type="text" name="maternal_surname" class="form-control" @if($edit==false) readonly @endif value="{{ $User->maternal_surname }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">{{ __('Genero') }}</label>
+                            <select name="gender" class="form-control" @if($edit==false) readonly disabled @endif>
+                                <option @if($User->gender=="masculino") selected="selected" @endif value="masculino">{{ __('Masculino') }}</option>
+                                <option @if($User->gender=="femenino") selected="selected" @endif value="femenino">{{ __('Femenino') }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">{{ __('Fecha de nacimiento') }}</label>
+                            <input type="date" class="form-control" name="birthdate" @if($edit==false) readonly @endif value="{{ $User->birthdate }}" required> 
+                        </div>
+                        <div class="form-group">
+                            <label for="curp">{{ __('CURP') }}</label>
+                            <input type="text" class="form-control" name="curp" @if($edit==false) readonly @endif value="{{ $User->curp }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">{{ __('Estado') }}</label>
+                            <input type="text" name="state" class="form-control" @if($edit==false) readonly @endif value="{{ $User->state }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="municipality">{{ __('Municipio') }}</label>
+                            <input type="text" name="municipality" class="form-control" @if($edit==false) readonly @endif value="{{ $User->municipality }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="colony">{{ __('Colonia') }}</label>
+                            <input type="text" name="colony" class="form-control" @if($edit==false) readonly @endif value="{{ $User->colony }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="street">{{ __('Calle') }}</label>
+                            <input type="text" name="street" class="form-control" @if($edit==false) readonly @endif value="{{ $User->street }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="external_number">{{ __('Número interior') }}</label>
+                            <input type="number" name="external_number" class="form-control" @if($edit==false) readonly @endif value="{{ $User->external_number }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="internal_number">{{ __('Número interior') }}</label>
+                            <input type="number" name="internal_number" class="form-control" @if($edit==false) readonly @endif value="{{ $User->internal_number }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="zipcode">{{ __('Código postal') }}</label>
+                            <input type="number" name="zipcode" class="form-control" @if($edit==false) readonly @endif value="{{ $User->zipcode }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cellphone">{{ __('Teléfono celular') }}</label>
+                            <input type="text" name="cellphone" class="form-control" @if($edit==false) readonly @endif value="{{ $User->cellphone }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="local_phone">{{ __('Teléfono local') }}</label>
+                            <input type="text" name="local_phone" class="form-control" @if($edit==false) readonly @endif value="{{ $User->local_phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="professional_license">{{ __('Cédula profesional') }}</label>
+                            <input type="text" name="professional_license" class="form-control" @if($edit==false) readonly @endif value="{{ $User->professional_license }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="rfc">{{ __('RFC') }}</label>
+                            <input type="text" name="rfc" class="form-control" @if($edit==false) readonly @endif value="{{ $User->rfc }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_name">{{ __('En caso de emergencia llamar a :') }}</label>
+                            <input type="text" name="contact_name" class="form-control" @if($edit==false) readonly @endif value="{{ $User->contact_name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_number">{{ __('Al número :') }}</label>
+                            <input type="text" name="contact_number" class="form-control" @if($edit==false) readonly @endif value="{{ $User->contact_number }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="allergy">{{ __('Alergías') }}</label>
+                            <select name="allergy" class="form-control" @if($edit==false) readonly disabled @endif>
+                                <option @if($User->allergy==true) selected="selected" @endif value="1">{{ __('Sí') }}</option>
+                                <option @if($User->allergy==false) selected="selected" @endif value="0">{{ __('No') }}</option>
+                            </select>
+                        </div>
+                        @if($User->allergy==true || $edit==true)
+                            <div class="form-group">
+                            <label for="allergy_description">{{ __('Descripción de alergías') }}</label>
+                            <input type="text" name="allergy_description" class="form-control" @if($edit==false) readonly @endif value="{{ $User->allergy_description }}">
+                        </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="controlled_medication">{{ __('Medicamento controlado') }}</label>
+                            <select name="controlled_medication" class="form-control" @if($edit==false) readonly disabled @endif>
+                                <option @if($User->controlled_medication==true) selected="selected" @endif value="1">{{ __('Sí') }}</option>
+                                <option @if($User->controlled_medication==false) selected="selected" @endif value="0">{{ __('No') }}</option>
+                            </select>
+                        </div>
+                         @if($User->controlled_medication==true || $edit==true)
+                            <div class="form-group">
+                            <label for="medication_description">{{ __('Descripción de medicamento') }}</label>
+                            <input type="text" name="medication_description" class="form-control" @if($edit==false) readonly @endif value="{{ $User->medication_description }}">
+                        </div>
+                        @endif
+                    </form>
+                </div>
+            </div>
+
+             <div class="col-lg-9 shadow py-3 my-3 offset-lg-3">
+                <div class="col-md-12 my-3">
+                    <h4 class="text-center">{{ __('Administrador') }}</h4>
+                    <hr>
+                </div>
+                <div class="col-lg-8 col-md-12 col-xs-12 offset-lg-2 pb-3">
+                    <!--Formulario si el usuario es administrador--!>
+                    <form action="" method="post">    
+                        <div class="form-group">
+                            <label for="nip">{{ __('NIP') }}</label>
+                            <input type="number" name="nip" class="form-control" @if($edit==false) readonly @endif value="{{ $User->nip }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="card_id">{{ __('Tarjeta de identificación') }}</label>
+                            <input type="text" name="card_id" class="form-control" @if($edit==false) readonly @endif value="{{ $User->card_id }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="scholarship_id">{{ 'Beca' }}</label>
+                            
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -104,7 +104,7 @@ class UserController extends Controller
             ->with('status','Foto de perfil actualizada correctamente');
 
         else:
-            $User->names = $request->name;
+            $User->name = $request->name;
             $User->email = $request->email;
             $User->save();
         endif;

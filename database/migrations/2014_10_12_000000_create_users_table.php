@@ -15,24 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nip')->nullable();
-            $table->string('card_id')->nullable();
+            $table->integer('nip')->nullable()->unique();
+            $table->string('card_id')->nullable()->unique();
+            $table->string('name')->unique();
             $table->string('names');
             $table->string('maternal_surname');
             $table->string('paternal_surname');
             $table->string('gender');
             $table->string('birthdate');
-            $table->string('curp');
+            $table->string('curp')->unique();
             $table->string('state');
             $table->string('municipality');
             $table->string('colony');
             $table->string('street');
-            $table->string('number');
+            $table->string('external_number');
+            $table->string('internal_number');
             $table->integer('zipcode');
             $table->string('cellphone');
             $table->string('local_phone')->nullable();
-            $table->string('professional_licence')->nullable();
-            $table->string('rfc')->nullable();
+            $table->string('professional_license')->nullable()->unique();
+            $table->string('rfc')->nullable()->unique();
             $table->string('contact_name');
             $table->string('contact_number');
             $table->boolean('allergy');

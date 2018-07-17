@@ -13,25 +13,34 @@ class UsersSeeder extends Seeder
     public function run()
     {
         User::create([
-            'names' => 'Admin',
+            'name' => 'Admin',
+            'names' =>'admin admin',
             'email' => 'ulises.jacob.cr@gmail.com',
+            'nip' => '1234',
+            'card_id' => 'AAAAAAAAAA123',
             'password' => bcrypt('admin'),
             'maternal_surname' => 'Admin',
             'paternal_surname' => 'admin',
-            'gender' => 'M',
+            'gender' => 'masculino',
             'birthdate' => '1999-12-30',
             'curp' => 'AAAAAAAAAAAAAAAAAA',
             'state' => 'state1',
             'municipality' => 'munic1',
             'colony' => 'colony1',
             'street' => 'street1',
-            'number' => '1234',
-            'zipcode' => '123456',
+            'external_number' => '1234',
+            'internal_number' => '5',
+            'zipcode' => '12345',
             'cellphone' => '4441000000',
-            'contact_name' => 'admin',
+            'local_phone' => '8210000',
+            'professional_license' => '12345678',
+            'contact_name' => 'admin contact',
             'contact_number' => '4441000000',
             'allergy' => '0',
+            'allergy_description' => 'allergy1',
             'controlled_medication' => '0',
+            'medication_description' => 'medication1',
+            'rfc' => 'AAAA999999AAA'
             
         ]);
     }
