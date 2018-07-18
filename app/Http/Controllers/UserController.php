@@ -104,8 +104,34 @@ class UserController extends Controller
             ->with('status','Foto de perfil actualizada correctamente');
 
         else:
+
             $User->name = $request->name;
             $User->email = $request->email;
+            $User->names =$request->names;
+            $User->paternal_surname = $request->paternal_surname;
+            $User->maternal_surname = $request->maternal_surname;
+            $User->gender = $request->gender;
+            $User->birthdate =$request->birthdate;
+            $User->curp =$request->curp;
+            $User->state =$request->state;
+            $User->municipality =$request->municipality;
+            $User->colony =$request->colony;
+            $User->street =$request->street;
+            $User->external_number =$request->external_number;
+            $User->internal_number =$request->internal_number;
+            $User->zipcode =$request->zipcode;
+            $User->cellphone =$request->cellphone;
+            $User->local_phone =$request->local_phone;
+            $User->professional_license =$request->professional_license;
+            $User->rfc =$request->rfc;
+            $User->contact_name =$request->contact_name;
+            $User->contact_number =$request->contact_number;
+            $User->allergy =$request->allergy;
+            $User->allergy_description =$request->allergy_description;
+            $User->controlled_medication =$request->controlled_medication;
+            $User->medication_description =$request->medication_description;
+            //$User->scholarship_id =$request->scholarship_id;
+
             $User->save();
         endif;
 

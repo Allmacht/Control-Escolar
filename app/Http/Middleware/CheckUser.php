@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use App\User;
 use Closure;
 
 class CheckUser
@@ -15,6 +15,10 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
+        if($request->id != \Auth::user()->id):
+            abort(404);  
+        endif;
+
         return $next($request);
     }
 }
