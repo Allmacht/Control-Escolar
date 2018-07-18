@@ -142,11 +142,14 @@
                 @endif
             </div>
             <br>
-            
+            <!-- ELEMENTOS DEL MENU -->
+
             <div class="list-group list-group-flush items" id="items">
                 <a href="{{ url('/') }}" class="list-group-item list-group-item-action">{{ __('Inicio') }}</a>
+                <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action">{{ __('Becas') }}</a>
             </div>
             
+            <!-- FIN ELEMENTOS DEL MENU -->
         </div>
         <main class="py-4">
             <div class="container">

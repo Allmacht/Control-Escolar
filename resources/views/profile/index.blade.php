@@ -35,14 +35,10 @@
         .datos{
             background: white;
         }
-        .nombre{
-            position: relative;
-            top: -120px;
-            left: 600px;
-        }
+        
         .cont-portada{
           margin-top: -25px;
-          padding: 0;
+          padding: 1;
         }
     </style>
 
@@ -51,7 +47,7 @@
     <div class="container-fluid cont-portada" style="z-index: 1;">
         <div class="row">
             <div class="col-md-12">
-                <img class="img-fluid portada" src="{{ asset('images/Material.jpg') }}" alt="responsive image">
+                <img class=" portada img-thumbnail" src="{{ asset('images/Material.jpg') }}" alt="responsive image">
             </div>
         </div>
     </div>
