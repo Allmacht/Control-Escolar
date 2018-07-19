@@ -67,7 +67,8 @@ class ScholarshipController extends Controller
      */
     public function show($id)
     {
-        //
+        $scholarship = Scholarship::findOrfail($id);
+        return view('Scholarship.show', compact('scholarship'));
     }
 
     /**

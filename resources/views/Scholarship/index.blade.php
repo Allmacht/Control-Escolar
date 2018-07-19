@@ -23,7 +23,7 @@
                     </div>
                </form>
             </div>
-            <div class="col-lg-6 col-sm-12 offset-lg-3">
+            <div class="col-lg-6 col-sm-12 offset-lg-3 py-2">
                 @if(session('status'))
                     <div class="col-lg-12">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -85,7 +85,7 @@
                                     <th>
                                         <a href="{{ route('ScholarshipEdit',['id'=>$scholarship->id]) }}" class="btn btn-outline-primary" 
                                             data-toggle="tooltip" data-placement="left" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-outline-warning" 
+                                        <a href="{{ route('ScholarshipShow',['id'=>$scholarship->id]) }}" class="btn btn-outline-warning" 
                                             data-toggle="tooltip" data-placement="top" title="{{ __('Ver') }}"><i class="fas fa-eye"></i></a>
                                         <a href="#" class="btn btn-outline-danger" 
                                             data-toggle="tooltip" data-placement="right" title="{{ __('Eliminar') }}"><i class="fas fa-times"></i></a>
@@ -102,6 +102,28 @@
                 </div>
             </div>
         </div>
+
+        <!--MODAL ELIMINAR -->
+
+        <div class="modal" tabindex="-1" role="dialog" id="confirm">
+            <div class="modal-dialog" role="document">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('Eliminar') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __('¿Realmente desea eliminarlo(a)?') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secundary" data-dismiss="modal">{{ __('Cerrar') }}</button>
+                    <button type="button" class="btn btn-outline-danger" id="delete-btn">{{ __('Eliminar') }}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIN DE MODAL ELIMINAR -->
     </div>
 
     <!-- FIN DE CONTENIDO -->
