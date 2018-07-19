@@ -49,6 +49,6 @@ Route::get('/home', 'HomeController@index')->name('home');
        Route::get('becas/{id}/edit', 'ScholarshipController@edit')->where('id','[0-9]+')->name('ScholarshipEdit');
        Route::get('becas/create', 'ScholarshipController@create')->name('ScholarshipCreate');
        Route::post('becas/{id}/update', 'ScholarshipController@update')->where('id','[0-9]+')->name('ScholarshipUpdate');
-       
+       Route::post('becas/softdelete', 'ScholarshipController@destroy')->name('ScholarshipSoftdelete');
     }); 
 

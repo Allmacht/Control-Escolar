@@ -37,40 +37,21 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto"></ul>
                     <div class="my-2 my-lg-0">
-                    @guest
-                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#login">
-                            <i class="fas fa-sign-in-alt"></i>  Iniciar Sesión
-                        </button>
-                    @else
-                        <!--<div class="dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}<span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </div>
-                        -->
-                        
-                        <a href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="right" title="Mi perfil">
-                            <img class="rounded-circle"
-                            src=@if(!Auth::user()->profile_picture == null)
-                                    "/images/profile_pictures/{{ Auth::user()->id }}"
-                                @else
-                                     "{{ asset('images/default.png') }}"
-                                @endif
-                            width="30px">
-                            {{ Auth::user()->name }}
-                        </a>
+                        @guest
+                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#login">
+                                <i class="fas fa-sign-in-alt"></i>  Iniciar Sesión
+                            </button>
+                        @else
+                            <a href="{{ route('ProfileUser',['id'=>Auth::id()]) }}" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="right" title="Mi perfil">
+                                <img class="rounded-circle"
+                                src=@if(!Auth::user()->profile_picture == null)
+                                        "/images/profile_pictures/{{ Auth::user()->id }}"
+                                    @else
+                                        "{{ asset('images/default.png') }}"
+                                    @endif
+                                width="30px">
+                                {{ Auth::user()->name }}
+                            </a>
                         @endguest
                     </div>
                 </div>
@@ -198,5 +179,8 @@
             document.getElementById("items").style.visibility = "hidden";
         }
     </script>
+
+    @yield('script')
+
 </body>
 </html>

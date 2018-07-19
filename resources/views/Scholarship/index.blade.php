@@ -67,7 +67,7 @@
             @endif
             <div class="col-md-12 py-2">
                 <div class="table-responsive">
-                    <table class="table  table-hover shadow">
+                    <table class="table table-hover shadow">
                         <thead>
                             <tr>
                                 <th scope="col">{{ __('Nombre de Beca') }}</th>
@@ -87,8 +87,10 @@
                                             data-toggle="tooltip" data-placement="left" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
                                         <a href="{{ route('ScholarshipShow',['id'=>$scholarship->id]) }}" class="btn btn-outline-warning" 
                                             data-toggle="tooltip" data-placement="top" title="{{ __('Ver') }}"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-outline-danger" 
-                                            data-toggle="tooltip" data-placement="right" title="{{ __('Eliminar') }}"><i class="fas fa-times"></i></a>
+                                        <span data-toggle="tooltip" data-placement="right" title="{{ __('Eliminar') }}">
+                                            <button class="btn btn-outline-danger open-modal" data-toggle="modal" 
+                                                data-target="#confirm" data-id="{{ $scholarship->id }}"><i class="fas fa-times"></i></button>
+                                        </span>
                                     </th>
                                 </tr>
                             @empty
@@ -102,29 +104,44 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--MODAL ELIMINAR -->
+    <!-- FIN DE CONTENIDO -->
 
-        <div class="modal" tabindex="-1" role="dialog" id="confirm">
+    <!--MODAL ELIMINAR -->
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirm">
             <div class="modal-dialog" role="document">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Eliminar') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('¿Realmente desea eliminarlo(a)?') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secundary" data-dismiss="modal">{{ __('Cerrar') }}</button>
-                    <button type="button" class="btn btn-outline-danger" id="delete-btn">{{ __('Eliminar') }}</button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Eliminar') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ __('¿Realmente desea eliminarlo(a)?') }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-info" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                        <form action="{{ route('ScholarshipSoftdelete') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" id="id">
+                            <button type="submit" class="btn btn-outline-danger">{{ __('Eliminar') }}</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- FIN DE MODAL ELIMINAR -->
-    </div>
+    <!-- FIN DE MODAL ELIMINAR -->
+@endsection
 
-    <!-- FIN DE CONTENIDO -->
+@section('script')
+    <script>
+        $(document).on('click','.open-modal', function(){
+            var id = $(this).data('id');
+            $(".modal-footer #id").val(id);
+        });
+    </script>
 @endsection

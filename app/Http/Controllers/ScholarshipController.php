@@ -110,8 +110,14 @@ class ScholarshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        $scholar = Scholarship::findOrfail($id);
+        $scholar->active = false;
+
+        $scholar->save();
+
+        return redirect()->route('Scholarships')->with('status','El registro ha sido eliminado correctamente');
     }
 }
