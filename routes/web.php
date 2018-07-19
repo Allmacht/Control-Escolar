@@ -36,7 +36,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-    //Rutas de perfil 
+    //Rutas de perfil
     Route::get('perfil/{id}' , 'UserController@index')->name('ProfileUser')->where('id','[0-9]+');
     Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id','[0-9]+')->middleware('CheckUser','web');
     Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id','[0-9]+')->middleware('CheckUser','web');
@@ -44,5 +44,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     //Scholarships
     Route::group(['middleware'=>['web']], function(){
        Route::get('becas', 'ScholarshipController@index')->name('Scholarships');
+       Route::get('becas/create', 'ScholarshipController@create')->name('ScholarshipCreate');
+       Route::post('becas/store', 'ScholarshipController@store')->name('ScholarshipStore');
     }); 
 

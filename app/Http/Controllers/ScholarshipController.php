@@ -20,14 +20,11 @@ class ScholarshipController extends Controller
      public function index()
     {
 
+        $create = false;
         $busqueda = Input::get('busqueda');
-        if($busqueda):
-            $scholarships = Scholarship::whereActive('1')->where('name','like','%'.$busqueda.'%')->paginate(6);
-        else:
-            $scholarships = Scholarship::whereActive('1')->paginate(6);
-        endif;
-        
-        return view('Scholarship.index',compact('scholarships','busqueda'));
+        $scholarships = Scholarship::whereActive('1')->where('name','like','%'.$busqueda.'%')->paginate(10);
+        return view('Scholarship.index',compact('scholarships','busqueda','create'));
+
     }
 
     /**
@@ -37,7 +34,10 @@ class ScholarshipController extends Controller
      */
     public function create()
     {
-        //
+        $create = true;
+        $busqueda = Input::get('busqueda');
+        $scholarships = Scholarship::whereActive('1')->where('name','like','%'.$busqueda.'%')->paginate(10);
+        return view('Scholarship.index',compact('scholarships','busqueda','create'));
     }
 
     /**
@@ -48,7 +48,13 @@ class ScholarshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $scholar = new Scholarship();
+        $scholar->name = $request->name;
+        $scholar->description = $request->description;
+
+        $scholar->save();
+
+        return redirect()->route('Scholarships')->with('status','Beca registrada correctamente');
     }
 
     /**
