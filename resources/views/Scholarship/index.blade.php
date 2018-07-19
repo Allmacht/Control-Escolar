@@ -47,6 +47,17 @@
                             <label for="description">{{ __('Descripción') }}</label>
                             <input type="text" name="description" class="form-control" placeholder="Ingrese una descripción" required>
                         </div>
+                        <div class="form-group">
+                            <label for="level">{{ __('Nivel') }}</label>
+                            <select name="level" class="form-control">
+                                <option value="Universidad">{{ __('Universidad') }}</option>
+                                <option value="Preparatoria">{{ __('Preparatoria') }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="provider">{{ __('Proveedor') }}</label>
+                            <input type="text" name="provider" class="form-control" placeholder="Ingrese el proveedor de Beca" required>
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-success">{{ __('Registrar') }}</button>
                             <a href="{{ route('Scholarships') }}" class="btn btn-outline-danger">{{ __('Cancelar') }}</a>
@@ -61,6 +72,7 @@
                             <tr>
                                 <th scope="col">{{ __('Nombre de Beca') }}</th>
                                 <th scope="col">{{ __('Descripción') }}</th>
+                                <th scope="col">{{ __('Nivel') }}</th>
                                 <th scope="col">{{ __('Acciones Disponibles') }}</th>
                             </tr>
                         </thead>
@@ -69,8 +81,9 @@
                                 <tr>
                                     <th>{{ $scholarship->name }}</th>
                                     <th>{{ $scholarship->description }}</th>
+                                    <th>{{ $scholarship->level }}</th>
                                     <th>
-                                        <a href="#" class="btn btn-outline-primary" 
+                                        <a href="{{ route('ScholarshipEdit',['id'=>$scholarship->id]) }}" class="btn btn-outline-primary" 
                                             data-toggle="tooltip" data-placement="left" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
                                         <a href="#" class="btn btn-outline-warning" 
                                             data-toggle="tooltip" data-placement="top" title="{{ __('Ver') }}"><i class="fas fa-eye"></i></a>

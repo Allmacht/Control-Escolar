@@ -51,6 +51,8 @@ class ScholarshipController extends Controller
         $scholar = new Scholarship();
         $scholar->name = $request->name;
         $scholar->description = $request->description;
+        $scholar->level = $request->level;
+        $scholar->provider = $request->provider;
 
         $scholar->save();
 
@@ -76,7 +78,8 @@ class ScholarshipController extends Controller
      */
     public function edit($id)
     {
-        //
+        $scholarship = Scholarship::findOrfail($id);
+        return view('Scholarship.edit',compact('scholarship'));
     }
 
     /**
@@ -88,7 +91,16 @@ class ScholarshipController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $scholar = Scholarship::findOrfail($id);
+        $scholar->name = $request->name;
+        $scholar->description = $request->description;
+        $scholar->level = $request->level;
+        $scholar->provider = $request->provider;
+
+        $scholar->save();
+
+        return redirect()->route('Scholarships')->with('status','Datos actualizados correctamente');
+
     }
 
     /**

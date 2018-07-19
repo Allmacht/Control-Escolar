@@ -17,6 +17,8 @@ class CreateScholarshipsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->string('level');
+            $table->string('provider')->nullable();
             $table->boolean('active')->default('1');
             $table->timestamps();
         });

@@ -16,6 +16,8 @@ class ScholarshipsSeeder extends Seeder
         
         $scholar->name = 'Beca 1';
         $scholar->description = 'Descripcion de beca 1';
+        $scholar->level = 'Universidad';
+        $scholar->provider = 'Proveedor1';
 
         $scholar->save();
 
@@ -23,6 +25,8 @@ class ScholarshipsSeeder extends Seeder
         
         $scholar1->name = 'Beca 2';
         $scholar1->description = 'Descripcion de beca 2';
+        $scholar1->level = 'Preparatoria';
+        $scholar1->provider = 'Proveedor1';
 
         $scholar1->save();
     }

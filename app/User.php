@@ -32,4 +32,8 @@ class User extends Authenticatable
         
         $this->notify(new ResetPassword($token));
     }
+
+    public function Scholarship(){
+        return $this->belongsTo(Scholarship::class);
+    }
 }
