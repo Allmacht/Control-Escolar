@@ -92,7 +92,7 @@
                                     </th>
                                 </tr>
                             @empty
-                                <h3>{{ __('No existen Becas registradas') }}</h3>
+                                <h3 class="text-danger">{{ __('No existen Becas registradas') }}</h3>
                             @endforelse
                         </tbody>
                     </table>

@@ -44,9 +44,10 @@ Route::get('/home', 'HomeController@index')->name('home');
     //Scholarships
     Route::group(['middleware'=>['web']], function(){
        Route::get('becas', 'ScholarshipController@index')->name('Scholarships');
+       Route::post('becas', 'ScholarshipController@store')->name('ScholarshipStore');
        Route::get('becas/{id}/edit', 'ScholarshipController@edit')->name('ScholarshipEdit');
        Route::get('becas/create', 'ScholarshipController@create')->name('ScholarshipCreate');
        Route::post('becas/{id}/update', 'ScholarshipController@update')->name('ScholarshipUpdate');
-       Route::post('becas/store', 'ScholarshipController@store')->name('ScholarshipStore');
+       
     }); 
 
