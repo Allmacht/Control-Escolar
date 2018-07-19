@@ -137,6 +137,6 @@
     <!-- FIN DE MODAL ELIMINAR -->
 @endsection
 
-@section('script')
+@section('scripts')
     <script src="{{ asset('js/modalScholarship.js') }}"></script>
 @endsection

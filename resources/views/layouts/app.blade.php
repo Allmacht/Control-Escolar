@@ -20,6 +20,8 @@
 
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -160,27 +162,9 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "320px";
-            
-            setTimeout(mostrar, 200);
-        }
-        function mostrar(){
-            document.getElementById("btnLogout").style.visibility = "visible";
-            document.getElementById("btnPerfil").style.visibility = "visible";
-            document.getElementById("items").style.visibility = "visible";
-        }
+    <script src="{{ asset('js/sideNav.js') }}"></script>
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("btnLogout").style.visibility = "hidden";
-            document.getElementById("btnPerfil").style.visibility = "hidden";
-            document.getElementById("items").style.visibility = "hidden";
-        }
-    </script>
-
-    @yield('script')
+    @yield('scripts')
 
 </body>
 </html>

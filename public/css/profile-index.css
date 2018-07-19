@@ -1,0 +1,44 @@
+ .fa-edit {
+     font-size: 1.4rem;
+     cursor: pointer;
+     text-decoration: none;
+     color: black;
+ }
+
+ .fa-times {
+     font-size: 1.4rem;
+     cursor: pointer;
+     text-decoration: none;
+     color: black;
+ }
+
+ .fa-chevron-circle-down {
+     font-size: 1.4rem;
+     cursor: pointer;
+     text-decoration: none;
+     color: black;
+ }
+
+ .fa-times .fa-edit:hover {
+     color: #7a7a7a;
+ }
+
+ .portada {
+     width: 2000px;
+     height: 400px;
+ }
+
+ .info {
+     position: relative;
+     top: -180px;
+     z-index: 2;
+ }
+
+ .datos {
+     background: white;
+ }
+
+ .cont-portada {
+     margin-top: -25px;
+     padding: 1;
+ }
