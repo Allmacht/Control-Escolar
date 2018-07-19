@@ -138,10 +138,5 @@
 @endsection
 
 @section('script')
-    <script>
-        $(document).on('click','.open-modal', function(){
-            var id = $(this).data('id');
-            $(".modal-footer #id").val(id);
-        });
-    </script>
+    <script src="{{ asset('js/modalScholarship.js') }}"></script>
 @endsection
