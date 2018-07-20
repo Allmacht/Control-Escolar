@@ -137,17 +137,19 @@
         <main class="py-4">
             <div class="container">
                 <div class="row">
-                    @if($errors->any())
-                        <div class="col-lg-6 offset-lg-3 col-md-12">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                @foreach ( $errors->all() as $error )
-                                    {{ $error }}
-                                @endforeach
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    @if(!Auth::check())
+                        @if($errors->any())
+                            <div class="col-lg-6 offset-lg-3 col-md-12">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    @foreach ( $errors->all() as $error )
+                                        {{ $error }}
+                                    @endforeach
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 </div>
             </div>
