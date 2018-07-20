@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Scholarship;
 
 class UsersSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        $scholarId = Scholarship::first()->value('id');
+
         User::create([
             'name' => 'Admin',
             'names' =>'admin admin',
@@ -40,7 +43,8 @@ class UsersSeeder extends Seeder
             'allergy_description' => 'allergy1',
             'controlled_medication' => '0',
             'medication_description' => 'medication1',
-            'rfc' => 'AAAA999999AAA'
+            'rfc' => 'AAAA999999AAA',
+            'scholarship_id' => $scholarId,
             
         ]);
         User::create([
@@ -71,8 +75,8 @@ class UsersSeeder extends Seeder
             'allergy_description' => 'allergy1',
             'controlled_medication' => '1',
             'medication_description' => 'medication1',
-            'rfc' => 'AAAA999999BAA'
-            
+            'rfc' => 'AAAA999999BAA',
+            'scholarship_id' => $scholarId,
         ]);
     }
 }
