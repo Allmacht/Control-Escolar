@@ -246,8 +246,10 @@
                         <hr>
                     </div>
                     <div class="col-lg-8 col-md-12 col-xs-12 offset-lg-2 pb-3">
+
                         <!--Formulario si el usuario es administrador--!>
-                        <form action="" method="post">    
+                        <form action="{{ route('ProfileAdmon',['id'=>$User->id]) }}" method="post">  
+                            @csrf  
                             <div class="form-group">
                                 <label for="nip">{{ __('NIP') }}</label>
                                 <input type="number" name="nip" class="form-control" @if($edit==false) readonly @endif value="{{ $User->nip }}">
@@ -258,8 +260,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="scholarship_id">{{ 'Beca' }}</label>
-                                
+                                <select name="scholarship_id" class="form-control" @if($edit == false) readonly disabled @endif>
+                                    @foreach ($scholarships as $scholarship)
+                                        <option @if($User->scholarship_id == $scholarship->id)
+                                            selected="selected" @endif value="{{ $scholarship->id }}">{{ $scholarship->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            @if($edit == true)
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-outline-success">{{ __('Actualizar información') }}</button>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

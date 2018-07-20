@@ -40,6 +40,9 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::get('perfil/{id}' , 'UserController@index')->name('ProfileUser')->where('id','[0-9]+');
     Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id','[0-9]+')->middleware('CheckUser','web');
     Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id','[0-9]+')->middleware('CheckUser','web');
+
+    
+    Route::post('perfil/{id}/updateAdmon', 'UserController@updateAdmon')->name('ProfileAdmon')->where('id','[0-9]+')->middleware('CheckUser','web');
     
     //Scholarships
     Route::group(['middleware'=>['web']], function(){

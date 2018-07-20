@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Scholarship;
 
 class UserController extends Controller
 {
@@ -20,9 +21,9 @@ class UserController extends Controller
      public function index($id)
     {
         $User = User::findOrfail($id);
+        $scholarships = Scholarship::whereActive('1')->get();
         $edit = false;
-        $message = null;
-        return view('profile.index', compact('User','edit','message'));
+        return view('profile.index', compact('User','edit','scholarships'));
 
     }
 
@@ -67,9 +68,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $User = User::findOrfail($id);
+        $scholarships = Scholarship::whereActive('1')->get();
         $edit = true;
-        $message = null;
-        return view('profile.index', compact('User','edit','message'));
+        return view('profile.index', compact('User','edit','scholarships'));
     }
 
     /**
@@ -130,13 +131,25 @@ class UserController extends Controller
             $User->allergy_description =$request->allergy_description;
             $User->controlled_medication =$request->controlled_medication;
             $User->medication_description =$request->medication_description;
-            //$User->scholarship_id =$request->scholarship_id;
 
             $User->save();
         endif;
 
         return redirect()->route('ProfileUser',['id'=>$User->id])
         ->with('status','Información actualizada exitosamente');
+    }
+
+    public function updateAdmon(Request $request, $id){
+
+        $user = User::findOrfail($id);
+        $user->nip = $request->nip;
+        $user->card_id = $request->card_id;
+        $user->scholarship_id = $request->scholarship_id;
+
+        $user->save();
+
+        return redirect()->route('ProfileUser', ['id' => $user->id])
+        ->with('status', 'Información actualizada exitosamente');
     }
 
     /**
