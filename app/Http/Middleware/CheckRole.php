@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\User;
+
 use Closure;
 
-class CheckUser
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -13,14 +13,12 @@ class CheckUser
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
-        if($request->id != \Auth::user()->id):
-            if(!\Auth::user()->hasRole('Administrador')):
+        if (!\Auth::user()->hasRole($role)):
             abort(404);
-            endif;
         endif;
-
+        
         return $next($request);
     }
 }

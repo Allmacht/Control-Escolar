@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             'scholarships',
             'roles',
             'permissions',
-            'role_has_permissions'
+            'role_has_permissions',
+            'model_has_roles'
 
         ]);
         // $this->call(UsersTableSeeder::class);

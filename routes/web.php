@@ -45,7 +45,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::post('perfil/{id}/updateAdmon', 'UserController@updateAdmon')->name('ProfileAdmon')->where('id','[0-9]+')->middleware('CheckUser','web');
     
     //Scholarships
-    Route::group(['middleware'=>['web']], function(){
+    Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
        Route::get('becas', 'ScholarshipController@index')->name('Scholarships');
        Route::post('becas', 'ScholarshipController@store')->name('ScholarshipStore');
        Route::get('becas/{id}', 'ScholarshipController@show')->where('id','[0-9]+')->name('ScholarshipShow');

@@ -33,7 +33,7 @@
                         @else
                              "{{ asset('images/default.png') }}"
                         @endif>
-                    @if($User->id == Auth::User()->id)    
+                    @if($User->id == Auth::User()->id || Auth::user()->hasRole('Administrador'))    
                     <div class="card-body text-center">
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">{{ __('Cambiar imagen') }}</button>
                         
@@ -53,7 +53,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12 text-right">
-                    @if($User->id == Auth::User()->id)
+                    @if($User->id == Auth::User()->id || Auth::user()->hasRole('Administrador'))
                         @if($edit == false)
                             <a href="{{ route('ProfileEdit',['id'=>$User->id]) }}">
                                 <i class="fas fa-edit" data-toggle="tooltip" data-placement="right" title="Editar Información"></i>
@@ -138,7 +138,7 @@
                             <option @if($User->gender=="femenino") selected="selected" @endif value="femenino">{{ __('Femenino') }}</option>
                         </select>
                     </div>
-                    @if($User->id == Auth::User()->id)
+                    @if($User->id == Auth::User()->id || Auth::user()->hasRole('Administrador'))
                         <div class="form-group">
                             <label for="birthdate">{{ __('Fecha de nacimiento') }}</label>
                             <input type="date" class="form-control" name="birthdate" @if($edit==false) readonly @endif value="{{ $User->birthdate }}" required> 
@@ -240,7 +240,7 @@
 
             <!--INFORMACION DE ADMINISTRADOR -->
 
-            @if($User->id == Auth::User()->id)
+            @if(Auth::user()->hasRole('Administrador'))
                 <div class="col-lg-9 shadow py-3 my-3 offset-lg-3 datos">
                     <div class="col-md-12 my-3">
                         <h4 class="text-center">{{ __('Administrador') }}</h4>
