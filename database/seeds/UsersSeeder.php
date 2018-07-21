@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
     {
         $scholarId = Scholarship::first()->value('id');
 
-        User::create([
+        $user1 = User::create([
             'name' => 'Admin',
             'names' =>'admin admin',
             'email' => 'ulises.jacob.cr@gmail.com',
@@ -47,6 +47,9 @@ class UsersSeeder extends Seeder
             'scholarship_id' => $scholarId,
             
         ]);
+
+        $user1->assignRole('Administrador');
+        
         User::create([
             'name' => 'Admin1',
             'names' =>'admin admin',

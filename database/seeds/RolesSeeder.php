@@ -13,26 +13,13 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $role = new Role();
-        $role->name = 'Administrador';
-        $role->guard_name = 'Web';
-        $role->save();
-
-        $role2 = new Role();
-        $role2->name = 'Coordinador';
-        $role2->guard_name = 'Web';
-        $role2->save();
-
-        $role3 = new Role();
-        $role3->name = 'Maestro';
-        $role3->guard_name = 'Web';
-        $role3->save();
-
-        $role4 = new Role();
-        $role4->name = 'Alumno';
-        $role4->guard_name = 'Web';
-        $role4->save();
-
+        $role1 = Role::create([
+            'name'=>'Administrador'
+        ]);
+        $role1->givePermissionTo('Crear');
+        $role1->givePermissionTo('Editar');
+        $role1->givePermissionTo('Ver');
+        $role1->givePermissionTo('Eliminar');
         
     }
 }
