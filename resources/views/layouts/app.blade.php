@@ -129,6 +129,7 @@
 
             <div class="list-group list-group-flush items" id="items">
                 <a href="{{ url('/') }}" class="list-group-item list-group-item-action">{{ __('Inicio') }}</a>
+                <a href="{{ route('users') }}" class="list-group-item list-group-item-action">{{ __('Usuarios') }}</a>
                 <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action">{{ __('Becas') }}</a>
             </div>
             

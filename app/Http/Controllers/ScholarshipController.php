@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Scholarship;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class ScholarshipController extends Controller
 {
@@ -22,7 +23,10 @@ class ScholarshipController extends Controller
 
         $create = false;
         $busqueda = Input::get('busqueda');
-        $scholarships = Scholarship::whereActive('1')->where('name','like','%'.$busqueda.'%')->paginate(10);
+        $scholarships = Scholarship::whereActive('1')
+            ->where(DB::raw("CONCAT(name, ' ',description, ' ',level, ' ',provider)"),'like','%'.$busqueda.'%')
+            ->paginate(10);
+
         return view('Scholarship.index',compact('scholarships','busqueda','create'));
 
     }

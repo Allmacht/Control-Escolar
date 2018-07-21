@@ -55,3 +55,6 @@ Route::get('/home', 'HomeController@index')->name('home');
        Route::post('becas/softdelete', 'ScholarshipController@destroy')->name('ScholarshipSoftdelete');
     });
 
+    Route::group(['middleware'=>['web']], function(){
+        Route::get('usuarios', 'UsersController@index')->name('users');
+    });

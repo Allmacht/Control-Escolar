@@ -36,11 +36,12 @@
                     @if($User->id == Auth::User()->id)    
                     <div class="card-body text-center">
                         <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">{{ __('Cambiar imagen') }}</button>
+                        
                     </div>
                     @endif
                 </div>
             </div>
-
+            
             <!-- FIN FOTO DE PERFIL -->
 
             <!--INFORMACION DE USUARIO -->
