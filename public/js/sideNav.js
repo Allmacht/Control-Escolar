@@ -1,6 +1,6 @@
 function openNav() {
+    ocultar();
     document.getElementById("mySidenav").style.width = "320px";
-
     setTimeout(mostrar, 200);
 }
 
@@ -11,7 +11,11 @@ function mostrar() {
 }
 
 function closeNav() {
+    ocultar();
     document.getElementById("mySidenav").style.width = "0";
+}
+
+function ocultar(){
     document.getElementById("btnLogout").style.visibility = "hidden";
     document.getElementById("btnPerfil").style.visibility = "hidden";
     document.getElementById("items").style.visibility = "hidden";

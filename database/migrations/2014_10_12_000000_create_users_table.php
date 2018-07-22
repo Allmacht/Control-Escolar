@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('maternal_surname');
             $table->string('paternal_surname');
             $table->string('gender');
-            $table->string('birthdate');
+            $table->date('birthdate');
             $table->string('curp')->unique();
             $table->string('state');
             $table->string('municipality');
