@@ -1,7 +1,7 @@
 function openNav() {
     ocultar();
     document.getElementById("mySidenav").style.width = "320px";
-    setTimeout(mostrar, 200);
+    setTimeout(mostrar, 240);
 }
 
 function mostrar() {
