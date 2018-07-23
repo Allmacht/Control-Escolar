@@ -132,6 +132,7 @@
                 <a href="{{ route('users') }}" class="list-group-item list-group-item-action">{{ __('Usuarios') }}</a>
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('Administrador'))
+                        <a href="{{ route('Roles') }}" class="list-group-item list-group-item-action">{{ __('Roles') }}</a>
                         <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action">{{ __('Becas') }}</a>
                     @endif
                 @endif

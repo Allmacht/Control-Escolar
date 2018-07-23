@@ -15,8 +15,12 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!\Auth::user()->hasRole($role)):
-            abort(404);
+        if(\Auth::check()):
+            if (!\Auth::user()->hasRole($role)):
+                abort(404);
+            endif;
+        else:
+            return redirect()->route('inicio');
         endif;
         
         return $next($request);

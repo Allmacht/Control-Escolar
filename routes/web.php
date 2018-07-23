@@ -36,7 +36,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-    //Rutas de perfil
+    //Profile routes
     Route::get('perfil/{id}' , 'UserController@index')->name('ProfileUser')->where('id','[0-9]+');
     Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id','[0-9]+')->middleware('CheckUser','web');
     Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id','[0-9]+')->middleware('CheckUser','web');
@@ -55,10 +55,12 @@ Route::get('/home', 'HomeController@index')->name('home');
        Route::post('becas/softdelete', 'ScholarshipController@destroy')->name('ScholarshipSoftdelete');
     });
 
+    //User control
     Route::group(['middleware'=>['web']], function(){
         Route::get('usuarios', 'UsersController@index')->name('users');
     });
 
+    //Roles control
     Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
-        
+        Route::get('roles', 'RoleController@index')->name('Roles');
     });
