@@ -91,7 +91,7 @@ class UserController extends Controller
             ]);
 
             if(\File::exists(public_path('/images/profile_pictures/',$User->id))):
-                \File::delete(public_path('/images/profile_pictures/',$User->id));
+                \File::delete(public_path('/images/profile_pictures/'.$User->id));
             endif;
 
             $file = $request->file('profile_picture');
@@ -150,6 +150,24 @@ class UserController extends Controller
 
         return redirect()->route('ProfileUser', ['id' => $user->id])
         ->with('status', 'Información actualizada exitosamente');
+    }
+
+    public function deleteImage($id){
+
+        $User = User::findOrfail($id);
+
+        if (\File::exists(public_path('/images/profile_pictures/', $User->id))):
+
+            \File::delete(public_path('/images/profile_pictures/'. $User->id));
+        
+        endif;
+
+        $User->profile_picture = null;
+
+        $User->save();
+
+        return redirect()->route('ProfileUser',['id'=> $User->id])
+        ->with('status','Imagen borrada correctamente');
     }
 
     /**

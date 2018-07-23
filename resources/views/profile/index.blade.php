@@ -35,8 +35,23 @@
                         @endif>
                     @if($User->id == Auth::User()->id || Auth::user()->hasRole('Administrador'))    
                     <div class="card-body text-center">
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">{{ __('Cambiar imagen') }}</button>
-                        
+                        <span  data-toggle="tooltip" data-placement="left" 
+                        @if($User->profile_picture != null)
+                            title="Cambiar Imagen">
+                        @else
+                            title="Agregar foto de perfil">
+                        @endif
+                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#ModalPerfil">
+                                <i class="fas fa-images"></i>
+                            </button>
+                        </span>
+                        @if($User->profile_picture != null)
+                            <span data-toggle="tooltip" data-placement="right" title="Eliminar Imagen">
+                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#ModalEliminar">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </span>
+                        @endif
                     </div>
                     @endif
                 </div>
@@ -286,32 +301,14 @@
 
     <!--MODAL CAMBIO DE PROFILE PICTURE-->
 
-    <div class="modal fade" id="ModalPerfil" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>{{ __('Foto de perfil') }}</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('ProfileUpdate',['id'=>$User->id]) }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="profile_picture">{{ __('Selecciona una imagen') }}</label>
-                            <input type="file" class="form-control-file" name="profile_picture" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
-                        <button type="submit" class="btn btn-outline-success">{{ __('Actualizar Imagen') }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('profile.modalPerfil');
     
     <!--FIN MODAL CAMBIO DE PROFILE PICTURE-->
+
+    <!--MODAL ELIMINAR PROFILE PICTURE-->
+
+    @include('profile.modalEliminar');
+
+    <!--FIN MODAL ELIMINAR PROFILE PICTURE-->
 
 @endsection
