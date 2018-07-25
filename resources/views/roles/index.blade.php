@@ -58,9 +58,11 @@
                                         @if($role->name != "Administrador")
                                             <a href="" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" 
                                                 title="Modificar"><i class="fas fa-edit"></i></a>
-                                            <a href="" class="btn btn-outline-danger px-3" data-toggle="tooltip" data-placement="right"
-                                                title="Eliminar"><i class="fas fa-times"></i></a>
-                                        
+                                            <span data-toggle="tooltip" data-placement="right" title="Eliminar">
+                                                <button class="btn btn-outline-danger px-3 open-modal" data-toggle="modal" data-target="#EliminarRol"
+                                                    data-id="{{ $role->id }}"><i class="fas fa-times"></i>
+                                                </button>
+                                            </span>
                                         @endif
                                     </td>
                                 </tr>
@@ -71,4 +73,15 @@
            </div>
        </div>
    </div>
+   <!--MODAL ELIMINAR ROL-->
+    @include('roles.ModalEliminar')
+   <!--FIN MODAL ELIMINAR ROL-->
+
+   
 @endsection
+
+<!--FUNCION OBTENER ID-->
+    @section('scripts')
+        <script src="{{ asset('js/modalDatos.js') }}"></script>
+    @endsection
+<!--FIN FUNCION OBTENER ID-->

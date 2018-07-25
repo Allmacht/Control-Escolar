@@ -138,5 +138,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/modalScholarship.js') }}"></script>
+    <script src="{{ asset('js/modalDatos.js') }}"></script>
 @endsection

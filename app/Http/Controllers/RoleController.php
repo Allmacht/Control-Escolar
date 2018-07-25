@@ -110,10 +110,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $role = Role::findOrfail($id);
+        $role = Role::findOrfail($request->id);
         $role->delete();
-        return redirect()->route('Roles')->with('El rol ha sido eliminado correctamente');
+        return redirect()->route('Roles')->with('status','El rol ha sido eliminado correctamente'); 
     }
 }

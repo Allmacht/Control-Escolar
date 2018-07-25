@@ -17,19 +17,19 @@
                     <p>{{ __('Seleccione los permisos que tendrá el nuevo rol :') }}</p>
                     <div class="text-center">
                         <div class="form-check form-check-inline py-3">
-                            <input class="form-check-input" type="checkbox" name="crear">
+                            <input class="form-check-input" type="checkbox" name="crear" id="crear">
                             <label class="form-check-label" for="crear">{{ __('Crear') }}</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="ver">
+                            <input type="checkbox" class="form-check-input" name="ver" id="ver">
                             <label class="form-check-label" for="ver">{{ __('Ver') }}</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="editar">
+                            <input type="checkbox" class="form-check-input" name="editar" id="editar">
                             <label class="form-check-label" for="editar">{{ __('Editar') }}</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" name="eliminar">
+                            <input type="checkbox" class="form-check-input" name="eliminar" id="eliminar">
                             <label class="form-check-label" for="eliminar">{{ __('Eliminar') }}</label>
                         </div>
                     </div>

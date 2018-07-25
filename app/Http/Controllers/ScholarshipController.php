@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Scholarship;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-
+use App\User;
 class ScholarshipController extends Controller
 {
     /**
@@ -118,9 +118,14 @@ class ScholarshipController extends Controller
     {
         $id = $request->id;
         $scholar = Scholarship::findOrfail($id);
+        $Users = User::where('scholarship_id', '=', $id)->get();
         $scholar->active = false;
-
         $scholar->save();
+
+        foreach ($Users as $User):
+            $User->scholarship_id = NULL;
+            $User->save();
+        endforeach;
 
         return redirect()->route('Scholarships')->with('status','El registro ha sido eliminado correctamente');
     }

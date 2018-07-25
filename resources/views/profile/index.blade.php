@@ -274,15 +274,17 @@
                                         <label for="card_id">{{ __('Tarjeta de identificación') }}</label>
                                         <input type="text" name="card_id" class="form-control" @if($edit==false) readonly @endif value="{{ $User->card_id }}">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="scholarship_id">{{ 'Beca' }}</label>
-                                        <select name="scholarship_id" class="form-control" @if($edit == false) readonly disabled @endif>
-                                            @foreach ($scholarships as $scholarship)
-                                                <option @if($User->scholarship_id == $scholarship->id)
-                                                    selected="selected" @endif value="{{ $scholarship->id }}">{{ $scholarship->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    @if($User->scholarship_id != null || $edit == true)
+                                        <div class="form-group">
+                                            <label for="scholarship_id">{{ 'Beca' }}</label>
+                                            <select name="scholarship_id" class="form-control" @if($edit == false) readonly disabled @endif>
+                                                @foreach ($scholarships as $scholarship)
+                                                    <option @if($User->scholarship_id == $scholarship->id)
+                                                        selected="selected" @endif value="{{ $scholarship->id }}">{{ $scholarship->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
                                     @if($edit == true)
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-outline-success">{{ __('Actualizar información') }}</button>
