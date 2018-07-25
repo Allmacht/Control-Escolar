@@ -130,12 +130,12 @@
             <!-- ELEMENTOS DEL MENU -->
 
             <div class="list-group list-group-flush items text-left" id="items">
-                <a href="{{ url('/') }}" class="list-group-item list-group-item-action"><i class="fas fa-home pr-3"></i>{{ __('Inicio') }}</a>
-                <a href="{{ route('users') }}" class="list-group-item list-group-item-action"><i class="fas fa-users pr-3"></i>{{ __('Usuarios') }}</a>
+                <a href="{{ url('/') }}" class="list-group-item list-group-item-action"><i class="fas fa-home"></i>{{ __('Inicio') }}</a>
+                <a href="{{ route('users') }}" class="list-group-item list-group-item-action"><i class="fas fa-user"></i>{{ __('Usuarios') }}</a>
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('Administrador'))
-                        <a href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler pr-3"></i>{{ __('Roles') }}</a>
-                        <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate pr-3"></i>{{ __('Becas') }}</a>
+                        <a href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler"></i>{{ __('Roles') }}</a>
+                        <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate"></i>{{ __('Becas') }}</a>
                     @endif
                 @endif
             </div>
