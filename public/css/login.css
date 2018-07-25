@@ -85,13 +85,11 @@
 .items a{
     font-size: 18px;
     color: black;
-    -webkit-transition: 500ms;
     transition: 500ms;
 }
 .items a:hover{
     color: #6d6d6d !important;
     padding-left: 40px;
-    transition: 500ms;
 }
 
 @media screen and (max-height: 450px) {
@@ -107,6 +105,7 @@
     font-size: 1.5rem;
     color: #68a1ff;
     padding-right: 15px;
+    
 }
 .fa-user{
     font-size: 1.5rem;
