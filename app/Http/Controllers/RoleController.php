@@ -36,7 +36,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+       return view('roles.create');
     }
 
     /**
@@ -47,7 +47,27 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = Role::create([
+            'name' => $request->name
+        ]);
+
+        if($request->has('crear')):
+            $role->givePermissionTo('Crear');
+        endif;
+
+        if($request->has('ver')):
+            $role->givePermissionTo('Ver');
+        endif;
+
+        if($request->has('modificar')):
+            $role->givePermissionTo('Modificar');
+        endif;
+
+        if($request->has('eliminar')):
+            $role->givePermissionTo('Eliminar');
+        endif;
+
+        return redirect()->route('Roles')->with('status','El rol se ha registrado correctamente');
     }
 
     /**
@@ -92,6 +112,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrfail($id);
+        $role->delete();
+        return redirect()->route('Roles')->with('El rol ha sido eliminado correctamente');
     }
 }

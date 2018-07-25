@@ -63,4 +63,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     //Roles control
     Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
         Route::get('roles', 'RoleController@index')->name('Roles');
+        Route::get('roles/create','RoleController@create')->name('RoleCreate');
+        Route::post('roles', 'RoleController@store')->name('RoleStore');
+        Route::post('roles/delete', 'RoleController@destroy')->name('RoleDelete');
     });
