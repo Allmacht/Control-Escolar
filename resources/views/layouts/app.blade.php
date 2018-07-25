@@ -109,7 +109,9 @@
                             "/images/profile_pictures/{{ Auth::user()->id }}"
                         @else
                             "{{ asset('images/default.png') }}"
-                        @endif alt="" width="70px">
+                        @endif 
+                        
+                        alt="" width="70px">
                     
                     <h3 class="userName text-white text-capitalize text-truncate">{{ Auth::user()->name }}</h3>
                     <p class="text-white userEmail">{{ Auth::user()->email }}</p>
@@ -127,13 +129,13 @@
             <br>
             <!-- ELEMENTOS DEL MENU -->
 
-            <div class="list-group list-group-flush items" id="items">
-                <a href="{{ url('/') }}" class="list-group-item list-group-item-action">{{ __('Inicio') }}</a>
-                <a href="{{ route('users') }}" class="list-group-item list-group-item-action">{{ __('Usuarios') }}</a>
+            <div class="list-group list-group-flush items text-left" id="items">
+                <a href="{{ url('/') }}" class="list-group-item list-group-item-action"><i class="fas fa-home pr-3"></i>{{ __('Inicio') }}</a>
+                <a href="{{ route('users') }}" class="list-group-item list-group-item-action"><i class="fas fa-users pr-3"></i>{{ __('Usuarios') }}</a>
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('Administrador'))
-                        <a href="{{ route('Roles') }}" class="list-group-item list-group-item-action">{{ __('Roles') }}</a>
-                        <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action">{{ __('Becas') }}</a>
+                        <a href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler pr-3"></i>{{ __('Roles') }}</a>
+                        <a href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate pr-3"></i>{{ __('Becas') }}</a>
                     @endif
                 @endif
             </div>
