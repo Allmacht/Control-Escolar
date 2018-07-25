@@ -82,14 +82,17 @@
     padding-left: 0;
     
 }
+
 .items a{
     font-size: 18px;
     color: black;
-    transition: 500ms;
+    
+    
 }
 .items a:hover{
     color: #6d6d6d !important;
     padding-left: 40px;
+    
 }
 
 @media screen and (max-height: 450px) {
