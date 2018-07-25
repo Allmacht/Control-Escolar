@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\role_has_permission;
+use Illuminate\Support\Facades\Input;
 
 class RoleController extends Controller
 {
@@ -23,10 +24,11 @@ class RoleController extends Controller
     
      public function index()
     {
-        $roles = Role::all();
+        $busqueda = Input::get('busqueda');
+        $roles = Role::where('name','like',"%$busqueda%")->get();
         $permissions = Permission::all();
         $roles_has_permissions = role_has_permission::all();
-        return view('roles.index',compact('roles','permissions','roles_has_permissions'));
+        return view('roles.index',compact('roles','permissions','roles_has_permissions', 'busqueda'));
     }
 
     /**
@@ -59,8 +61,8 @@ class RoleController extends Controller
             $role->givePermissionTo('Ver');
         endif;
 
-        if($request->has('modificar')):
-            $role->givePermissionTo('Modificar');
+        if($request->has('Editar')):
+            $role->givePermissionTo('Editar');
         endif;
 
         if($request->has('eliminar')):
@@ -89,7 +91,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrfail($id);
+        return view('roles.edit',compact('role'));
     }
 
     /**
@@ -101,7 +104,30 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrfail($id);
+        $role->syncPermissions();
+
+        $role->name = $request->name;
+
+        if($request->has('crear')) :
+            $role->givePermissionTo('Crear');
+        endif;
+
+        if ($request->has('ver')) :
+            $role->givePermissionTo('Ver');
+        endif;
+
+        if ($request->has('editar')) :
+            $role->givePermissionTo('Editar');
+        endif;
+
+        if ($request->has('eliminar')) :
+            $role->givePermissionTo('Eliminar');
+        endif;
+
+        $role->save();
+
+        return redirect()->route('Roles')->with('status','El rol ha sido modificado correctamente');
     }
 
     /**

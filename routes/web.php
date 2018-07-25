@@ -66,4 +66,6 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('roles/create','RoleController@create')->name('RoleCreate');
         Route::post('roles', 'RoleController@store')->name('RoleStore');
         Route::post('roles/delete', 'RoleController@destroy')->name('RoleDelete');
+        Route::get('roles/{id}/edit', 'RoleController@edit')->where('id','[0-9]+')->name('RoleEdit');
+        Route::post('roles/{id}/update', 'RoleController@update')->where('id','[0-9]+')->name('RoleUpdate');
     });

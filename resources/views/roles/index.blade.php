@@ -6,8 +6,18 @@
            <div class="col-lg-12 py-3">
                <h3>{{ __('Control de Roles') }}</h3>
            </div>
-           <div class="col-lg-12 py-3">
+           <div class="col-lg-6 col-sm-12 text-md-left text-center py-3">
                <a href="{{ route('RoleCreate') }}" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>{{ __(' Nuevo Rol') }}</a>
+           </div>
+           <div class="col-lg-6 col-sm-12 text-md-right text-center py-3">
+               <form action="" method="get">
+                    <div class="input-group my-1">
+                        <input type="text" class="form-control" name="busqueda" placeholder="Buscar..." value="{{ $busqueda }}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-outline-secondary">{{ __('Buscar') }}</button>
+                        </div>
+                    </div>
+                </form>
            </div>
            <div class="col-lg-6 offset-lg-3 col-sm-12 py-2">
                 @if(session('status'))
@@ -56,7 +66,7 @@
                                     </td>
                                     <td class="align-middle">
                                         @if($role->name != "Administrador")
-                                            <a href="" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" 
+                                            <a href="{{ route('RoleEdit',['id'=>$role->id]) }}" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" 
                                                 title="Modificar"><i class="fas fa-edit"></i></a>
                                             <span data-toggle="tooltip" data-placement="right" title="Eliminar">
                                                 <button class="btn btn-outline-danger px-3 open-modal" data-toggle="modal" data-target="#EliminarRol"
