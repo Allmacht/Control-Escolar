@@ -66,8 +66,10 @@
                                     <th class="align-middle">
                                         <a href="{{ route('ProfileUser',['id'=>$user->id]) }}" class="btn btn-outline-primary"
                                             data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}"><i class="fas fa-user-circle"></i></a>
+                                        @if($user->id == Auth::user()->id || Auth::user()->hasRole('Administrador'))
                                         <a href="{{ route('ProfileEdit',['id'=>$user->id]) }}" class="btn btn-outline-info"
                                             data-toggle="tooltip" data-placement="top" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
+                                        @endif
                                     </th>
                                 </tr>
                             @empty
