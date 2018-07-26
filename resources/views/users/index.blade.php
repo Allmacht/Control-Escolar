@@ -40,7 +40,7 @@
                                 <th>{{ __('Perfil') }}</th>
                                 <th>{{ __('Usuario') }}</th>
                                 <th>{{ __('Email') }}</th>
-                                
+                                <th>{{ __('Rol') }}</th>
                                 <th>{{ __('Acciones') }}</th>
                             </tr>
                         </thead>
@@ -58,6 +58,11 @@
                                     @endif
                                     <th class="align-middle">{{ $user->name }}</th>
                                     <th class="align-middle">{{ $user->email }}</th>
+                                    <th class="align-middle">
+                                        @foreach ($roles = $user->getRoleNames() as $role)
+                                            {{ $role }}
+                                        @endforeach
+                                    </th>
                                     <th class="align-middle">
                                         <a href="{{ route('ProfileUser',['id'=>$user->id]) }}" class="btn btn-outline-primary"
                                             data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}"><i class="fas fa-user-circle"></i></a>

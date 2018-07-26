@@ -285,6 +285,7 @@
                                             </select>
                                         </div>
                                     @endif
+                                    
                                     @if($edit == true)
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-outline-success">{{ __('Actualizar información') }}</button>
