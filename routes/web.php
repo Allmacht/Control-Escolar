@@ -41,7 +41,6 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id','[0-9]+')->middleware('CheckUser','web');
     Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id','[0-9]+')->middleware('CheckUser','web');
     Route::post('perfil/{id}/deleteProfileImage', 'UserController@deleteImage')->name('ProfileDeleteImage')->where('id','[0-9]+')->middleware('CheckUser');
-    
     Route::post('perfil/{id}/updateAdmon', 'UserController@updateAdmon')->name('ProfileAdmon')->where('id','[0-9]+')->middleware('CheckUser','web');
     
     //Scholarships
@@ -65,7 +64,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('roles', 'RoleController@index')->name('Roles');
         Route::get('roles/create','RoleController@create')->name('RoleCreate');
         Route::post('roles', 'RoleController@store')->name('RoleStore');
-        Route::post('roles/delete', 'RoleController@destroy')->name('RoleDelete');
-        Route::get('roles/{id}/edit', 'RoleController@edit')->where('id','[0-9]+')->name('RoleEdit');
-        Route::post('roles/{id}/update', 'RoleController@update')->where('id','[0-9]+')->name('RoleUpdate');
+        Route::post('roles/delete', 'RoleController@destroy')->name('RoleDelete')->middleware('CheckRoleID');
+        Route::get('roles/{id}/edit', 'RoleController@edit')->where('id','[0-9]+')->name('RoleEdit')->middleware('CheckRoleID');
+        Route::post('roles/{id}/update', 'RoleController@update')->where('id','[0-9]+')->name('RoleUpdate')->middleware('CheckRoleID');
     });
