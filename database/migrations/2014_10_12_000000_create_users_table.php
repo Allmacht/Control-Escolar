@@ -15,9 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nip')->nullable()->unique();
-            $table->string('card_id')->nullable()->unique();
-            $table->string('name')->unique();
+            $table->integer('nip')->nullable()->unique(); //Administrativo
+            $table->string('card_id')->nullable()->unique(); //Administrativo , Docente
+            $table->string('name')->unique(); 
             $table->string('names');
             $table->string('maternal_surname');
             $table->string('paternal_surname');
@@ -29,12 +29,12 @@ class CreateUsersTable extends Migration
             $table->string('colony');
             $table->string('street');
             $table->string('external_number');
-            $table->string('internal_number');
+            $table->string('internal_number')->nullable();
             $table->integer('zipcode');
             $table->string('cellphone');
             $table->string('local_phone')->nullable();
-            $table->string('professional_license')->nullable()->unique();
-            $table->string('rfc')->nullable()->unique();
+            $table->string('professional_license')->nullable()->unique(); //Administrativo, docente
+            $table->string('rfc')->nullable()->unique(); //Administrativo , docente
             $table->string('contact_name');
             $table->string('contact_number');
             $table->boolean('allergy');
@@ -43,7 +43,7 @@ class CreateUsersTable extends Migration
             $table->string('medication_description')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedInteger('scholarship_id')->nullable();
+            $table->unsignedInteger('scholarship_id')->nullable(); //Estudiante
             $table->foreign('scholarship_id')->references('id')->on('scholarships');
             $table->rememberToken();
             $table->string('profile_picture')->nullable();

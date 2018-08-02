@@ -13,9 +13,9 @@ class CheckPermission
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($permission,$request, Closure $next)
+    public function handle($request, Closure $next, $permission)
     {
-        if (!\Auth::user()->hasPermission($permission)) :
+        if (!\Auth::user()->hasPermissionTo($permission)) :
             abort(404);
         endif;
         

@@ -24,8 +24,9 @@ class UserController extends Controller
     {
         $User = User::findOrfail($id);
         $scholarships = Scholarship::whereActive('1')->get();
+        $roles = Role::all();
         $edit = false;
-        return view('profile.index', compact('User','edit','scholarships'));
+        return view('profile.index', compact('User','edit','scholarships','roles'));
 
     }
 
@@ -72,7 +73,8 @@ class UserController extends Controller
         $User = User::findOrfail($id);
         $scholarships = Scholarship::whereActive('1')->get();
         $edit = true;
-        return view('profile.index', compact('User','edit','scholarships'));
+        $roles = Role::all();
+        return view('profile.index', compact('User','edit','scholarships','roles'));
     }
 
     /**
@@ -133,7 +135,7 @@ class UserController extends Controller
             $User->allergy_description =$request->allergy_description;
             $User->controlled_medication =$request->controlled_medication;
             $User->medication_description =$request->medication_description;
-
+            
             $User->save();
         endif;
 
@@ -143,11 +145,13 @@ class UserController extends Controller
 
     public function updateAdmon(Request $request, $id){
 
+        
         $user = User::findOrfail($id);
         $user->nip = $request->nip;
         $user->card_id = $request->card_id;
         $user->scholarship_id = $request->scholarship_id;
-
+        $user->syncRoles();
+        $user->assignRole($request->role);
         $user->save();
 
         return redirect()->route('ProfileUser', ['id' => $user->id])

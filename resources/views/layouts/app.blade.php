@@ -131,7 +131,7 @@
 
             <div class="list-group list-group-flush items text-left" id="items">
                 <a id="item" href="{{ url('/') }}" class="list-group-item list-group-item-action"><i class="fas fa-home"></i>{{ __('Inicio') }}</a>
-                <a id="item1" href="{{ route('users') }}" class="list-group-item list-group-item-action"><i class="fas fa-user"></i>{{ __('Usuarios') }}</a>
+                <a id="item1" href="{{ route('administrativos') }}" class="list-group-item list-group-item-action"><i class="fas fa-user"></i>{{ __('Administrativos') }}</a>
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('Administrador'))
                         <a id="item2" href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler"></i>{{ __('Roles') }}</a>

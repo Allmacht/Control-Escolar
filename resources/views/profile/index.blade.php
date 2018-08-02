@@ -179,7 +179,7 @@
                                     <input type="text" name="street" class="form-control" @if($edit==false) readonly @endif value="{{ $User->street }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="external_number">{{ __('Número interior') }}</label>
+                                    <label for="external_number">{{ __('Número exterior') }}</label>
                                     <input type="number" name="external_number" class="form-control" @if($edit==false) readonly @endif value="{{ $User->external_number }}">
                                 </div>
                                 <div class="form-group">
@@ -285,6 +285,16 @@
                                             </select>
                                         </div>
                                     @endif
+
+                                    <div class="form-group">
+                                        <label for="role">{{ __('Rol') }}</label>
+                                        <select name="role" class="form-control" @if($edit == false) readonly disabled @endif>
+                                            @foreach ($roles as $role)
+                                                <option @if($User->hasRole($role->name)) selected="selected" @endif
+                                                value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     
                                     @if($edit == true)
                                         <div class="text-center">
