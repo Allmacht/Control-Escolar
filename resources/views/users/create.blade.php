@@ -89,11 +89,11 @@
                         </div>
                         <div class="form-group col-lg-2 col-md-6 col-sm-12 mb-3">
                             <label for="cellphone">{{ __('Celular') }}</label>
-                            <input type="number" name="cellphone" class="form-control" placeholder="Teléfono celular" pattern="[0-9]+{10}" required>
+                            <input type="number" name="cellphone" class="form-control" placeholder="Teléfono celular" pattern="[0-9]{10}" required>
                         </div>
                         <div class="form-group col-lg-2 col-md-6 col-sm-12 mb-3">
                             <label for="local_phone">{{ __('Teléfono local') }}</label>
-                            <input type="number" name="local_phone" class="form-control" placeholder="Teléfono local">
+                            <input type="number" name="local_phone" class="form-control" pattern="[0-9]{7,}" placeholder="Teléfono local">
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="contact_name">{{ __('En caso de emergencia llamar a :') }}</label>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="contact_number">{{ __('Al número :') }}</label>
-                            <input type="number" name="contact_number" class="form-control" placeholder="Ingrese número del contacto" required>
+                            <input type="number" name="contact_number" class="form-control" pattern="[0-9]{7,}" placeholder="Ingrese número del contacto" required>
                         </div>
                         <div class="form-group col-lg-1 col-md-6 col-sm-12 mb-3">
                             <label for="allergy">{{ __('Alergia(s)') }}</label>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
                             <label for="rfc">{{ __('RFC') }}</label>
-                            <input type="text" name="rfc" class="form-control" placeholder="Ingrese RFC">
+                            <input type="text" name="rfc" class="form-control" placeholder="Ingrese RFC" pattern="[A-Za-z0-9]{12,13}">
                         </div>
                         <div class="col-12">
                             <hr>
@@ -152,7 +152,7 @@
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
                             <label for="name">{{ __('Nombre de usuario') }}</label>
-                            <input type="text" name="name" class="form-control" placeholder="Ingrese nombre de usuario" required>
+                            <input type="text" name="name" class="form-control" placeholder="Ingrese nombre de usuario" required pattern="[A-Za-z]{3,}">
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
                             <label for="email">{{ __('Correo electrónico') }}</label>

@@ -88,34 +88,20 @@ class UsersController extends Controller
         $user->colony = $request->colony;
         $user->street = $request->street;
         $user->external_number = $request->external_number;
-        if($request->internal_number):
-            $user->internal_number = $request->internal_number;
-        endif;
+        $user->internal_number = $request->internal_number;
         $user->zipcode = $request->zipcode;
         $user->cellphone = $request->cellphone;
-        if($request->local_phone):
-            $user->local_phone = $request->local_phone;
-        endif;
+        $user->local_phone = $request->local_phone;
         $user->contact_name = $request->contact_name;
         $user->contact_number = $request->contact_number;
         $user->allergy = $request->allergy;
-        if($request->allergy_description):
-            $user->allergy_description = $request->allergy_description;
-        endif;
+        $user->allergy_description = $request->allergy_description;
         $user->controlled_medication = $request->controlled_medication;
-        if($request->medication_description):
-            $user->medication_description = $request->medication_description;
-        endif;
-        if($request->professional_license):
-            $user->professional_license = $request->professional_license;
-        endif;
-        if($request->rfc):
-            $user->rfc = $request->rfc;
-        endif;
+        $user->medication_description = $request->medication_description;
+        $user->professional_license = $request->professional_license;
+        $user->rfc = $request->rfc;
         $user->nip = $request->nip;
-        if($request->card_id):
-            $user->card_id = $request->card_id;
-        endif;
+        $user->card_id = $request->card_id;        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
