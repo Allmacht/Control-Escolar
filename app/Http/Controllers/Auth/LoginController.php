@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 class LoginController extends Controller
 {
     /*
@@ -48,11 +48,25 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        if(Auth::attempt(['active'=>1,'email'=>$email, 'password'=>$password])):
-            return redirect()->intended('home');
-        else:
+        $user = User::whereEmail($email)->value('active');
+
+        //dd($user);
+
+        if(is_null($user)):
             return redirect()->route('inicio')->withErrors('Usuario o contraseña incorrectos');
         endif;
+        
+        if($user == false):
+            return redirect()->route('inicio')->withErrors('Usuario desactivado');
+        
+        else:
+            if (Auth::attempt(['active' => 1, 'email' => $email, 'password' => $password])) :
+                return redirect()->intended('home');
+            else :
+                return redirect()->route('inicio')->withErrors('Usuario o contraseña incorrectos');
+            endif;
+        endif;
+        
     }
 
     public function logout(){
