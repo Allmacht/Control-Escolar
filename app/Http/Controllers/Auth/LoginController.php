@@ -50,14 +50,13 @@ class LoginController extends Controller
 
         $user = User::whereEmail($email)->value('active');
 
-        //dd($user);
 
         if(is_null($user)):
             return redirect()->route('inicio')->withErrors('Usuario o contraseña incorrectos');
         endif;
         
         if($user == false):
-            return redirect()->route('inicio')->withErrors('Usuario desactivado');
+            return redirect()->route('inicio')->withErrors('Usuario desactivado, contacte al Administrador');
         
         else:
             if (Auth::attempt(['active' => 1, 'email' => $email, 'password' => $password])) :
