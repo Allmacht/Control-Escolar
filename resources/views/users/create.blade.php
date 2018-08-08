@@ -161,10 +161,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <div id="callback-preview">
-                                            <label id="image-label" for="profile_picture">{{ __('Selecciona una fotografía') }}</label>
-                                            <input type="file" class="form-control-file" id="imgInp" name="profile_picture" required>
-                                        </div>
+                                        <label id="image-label" for="profile_picture">{{ __('Selecciona una fotografía') }}</label>
+                                        <input type="file" class="form-control-file" id="imgInp" name="profile_picture" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
