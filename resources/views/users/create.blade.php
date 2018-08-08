@@ -27,7 +27,7 @@
                 </div>
             @endif
         </div>
-        <form action="{{ route('AdminStore') }}" method="post">
+        <form action="{{ route('AdminStore') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -137,16 +137,52 @@
                             <hr>
                         </div> 
                     </div>
-                    <div class="form-row">
-                        <div class="col-lg-12 py-3">
-                            <h3>{{ __('Administración') }}</h3>
+                    <div class="col-lg-12 col-md-12 col-sm-12 my-3">
+                        <h3>{{ __('Administración') }}</h3>
+                    </div>
+                    <div class="col-lg-4 float-left my-3">
+                        <div class="card mx-auto" style="width: 15rem;">
+                            <img class="card-img-top" id="blah" src="{{ asset('images/default.png') }}">
+                            <div class="card-body text-center">
+                                <span data-toggle="tooltip" data-placement="left" title="Agregar imagen de perfil">
+                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#perfil"><i class="fas fa-image"></i></button>
+                                </span>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                    </div>
+                    <div class="modal fade" tabindex="-1" role="dialog" id="perfil">
+                        <div class="modal-dialog"  role="document" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ __('Agregar fotografía') }}</h5>
+                                    <button class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div id="callback-preview">
+                                            <label id="image-label" for="profile_picture">{{ __('Selecciona una fotografía') }}</label>
+                                            <input type="file" class="form-control-file" id="imgInp" name="profile_picture" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">{{ __('Aceptar') }}</button>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row col-lg-8 col-md-12 float-right">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
                             <label for="nip">{{ __('NIP') }}</label>
                             <input type="number" class="form-control" readonly value="{{ $nip }}" name="nip" required>
                             <small>{{ __('NIP generado automáticamente') }}</small>
                         </div>
-                        <div class="form-group col-lg-8 col-md-6 col-sm-12 mb-3">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
                             <label for="card_id">{{ __('identificación (opcional)') }}</label>
                             <input type="text" class="form-control" placeholder="Identificación única" name="card_id" value="{{ old('card_id') }}">
                         </div>
@@ -184,28 +220,8 @@
             </div>
         </form>
     </div>
-    <div class="modal fade" tabindex="-1" role="dialog" id="perfil">
-        <div class="modal-dialog" role="document" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Agregar fotografía') }}</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="" method="get">
-                    <div class="modal-body">
-                       <div class="form-group">
-                           <label for="profile_picture">{{ __('Selecciona una fotografía') }}</label>
-                           <input type="file" class="form-control-file" name="profile_picture" required>
-                       </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
-                        <button type="submit" class="btn btn-outline-success">{{ __('Aceptar') }}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/ImagePreview.js') }}"></script>
 @endsection

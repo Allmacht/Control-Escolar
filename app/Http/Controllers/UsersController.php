@@ -74,6 +74,13 @@ class UsersController extends Controller
             'nip' => 'nullable|unique:users|max:4',
             'email' => 'unique:users',
             'name' => 'unique:users|min:3|max:12'
+        ],[
+            'name.unique' => 'El nombre de usuario ya existe',
+            'email.unique' => 'El correo electrónico está asociado a otra cuenta',
+            'nip.unique' => 'El NIP está asociado a otra cuenta',
+            'curp.unique' => 'La CURP ya fue registrada',
+            'professional_license.unique' => 'La cédula profesional ya existe',
+            'rfc.unique' => 'El RFC ya existe',
         ]);
 
         $user = new User();
