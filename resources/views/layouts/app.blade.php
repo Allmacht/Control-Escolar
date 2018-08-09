@@ -100,7 +100,7 @@
         </div>
 
         <div id="mySidenav" class="sidenav shadow-lg">
-            <div class="user sticky-top">
+            <div class="user">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <img src="{{ asset('images/Material1.png') }}" alt="" width="400px">
                 @if(Auth::check())
@@ -136,6 +136,7 @@
                     @if(Auth::user()->hasRole('Administrador'))
                         <a id="item2" href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler"></i>{{ __('Roles') }}</a>
                         <a id="item3" href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate"></i>{{ __('Becas') }}</a>
+                        
                     @endif
                 @endif
             </div>
