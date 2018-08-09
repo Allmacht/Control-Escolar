@@ -213,7 +213,7 @@
                             <label for="role">{{ __('Rol') }}</label>
                             <select name="role" class="form-control">
                                 @foreach ($roles as $role)
-                                    @if($role->name != 'Alumno' && $role->name !='Docente')
+                                    @if($role->name == 'Coordinador' || $role->name =='Administrador')
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endif
                                 @endforeach

@@ -51,7 +51,7 @@
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                @if($user->hasRole('Administrador'))
+                                @if($user->hasRole('Administrador') || $user->hasRole('Coordinador'))
                                     <tr>
                                         @if($user->profile_picture != null)
                                             <th>
