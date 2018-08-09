@@ -100,7 +100,7 @@
         </div>
 
         <div id="mySidenav" class="sidenav shadow-lg">
-            <div class="user">
+            <div class="user sticky-top">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <img src="{{ asset('images/Material1.png') }}" alt="" width="400px">
                 @if(Auth::check())
