@@ -147,6 +147,10 @@
                                 <span data-toggle="tooltip" data-placement="left" title="Agregar imagen de perfil">
                                     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#perfil"><i class="fas fa-image"></i></button>
                                 </span>
+                                <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="
+                                     $('#blah').attr('src','{{ asset('images/default.png') }}');
+                                     $('#imgInp').val('');
+                                "><i class="fas fa-times"></i></button>
                             </div>
                         </div>
                     </div>
@@ -166,7 +170,10 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                                    <button class="btn btn-outline-danger" data-dismiss="modal" onclick="
+                                     $('#blah').attr('src','{{ asset('images/default.png') }}');
+                                     $('#imgInp').val('');
+                                ">{{ __('Cancelar') }}</button>
                                     <button type="button" class="btn btn-outline-success" data-dismiss="modal">{{ __('Aceptar') }}</button>
                                 </div>
                                
