@@ -21,5 +21,35 @@ class RolesSeeder extends Seeder
         $role1->givePermissionTo('Ver');
         $role1->givePermissionTo('Eliminar');
         
+        $role2 = Role::create([
+            'name' => 'Coordinador'
+        ]);
+
+        $role2->givePermissionTo('Crear');
+        $role2->givePermissionTo('Editar');
+        $role2->givePermissionTo('Ver');
+        $role2->givePermissionTo('Eliminar');
+
+        $role3 = Role::create([
+            'name' => 'Alumno'
+        ]);
+
+        $role3->givePermissionTo('Crear');
+        $role3->givePermissionTo('Editar');
+        $role3->givePermissionTo('Ver');
+        $role3->givePermissionTo('Eliminar');
+
+        $role4 = Role::create([
+            'name' => 'Docente'
+        ]);
+
+        $role4->givePermissionTo('Crear');
+        $role4->givePermissionTo('Editar');
+        $role4->givePermissionTo('Ver');
+        $role4->givePermissionTo('Eliminar');
+
+        $role5 = Role::create([
+            'name' => 'Estandar'
+        ]);
     }
 }
