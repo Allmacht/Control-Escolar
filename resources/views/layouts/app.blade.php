@@ -67,7 +67,7 @@
                         <div class="avatar text-center">
                             <img class="" src="{{ asset('icons/user.png') }}" alt="">
                         </div>
-                        <h4 class="modal-title" id="modaltitle">Iniciar Sesión</h4>
+                        
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -75,6 +75,7 @@
                     <div class="modal-body">
                         <form action="{{ route('login') }}" method="post">
                             @csrf
+                            <h4 class="text-center mb-2">{{ __('Iniciar Sesión') }}</h4>
                             <div class="form-group">  
                                 <label for="email">Correo</label>
                                 <input type="email" class="form-control" name="email" placeholder="Ingresa tu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autofocus>
