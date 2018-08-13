@@ -42,6 +42,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('Perfil') }}</th>
+                                <th>{{ __('Nombre(s)') }}</th>
                                 <th>{{ __('Usuario') }}</th>
                                 <th>{{ __('Email') }}</th>
                                 <th>{{ __('Rol') }}</th>
@@ -50,7 +51,7 @@
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                @if($user->hasRole('Administrador'))
+                                @if($user->hasRole('Administrador') || $user->hasRole('Coordinador'))
                                     <tr>
                                         @if($user->profile_picture != null)
                                             <th>
@@ -61,6 +62,7 @@
                                                 <img class="rounded-circle" src="/images/default.png" alt="" width="40px">
                                             </th>
                                         @endif
+                                        <th class="align-middle">{{ $user->names }}</th>
                                         <th class="align-middle">{{ $user->name }}</th>
                                         <th class="align-middle">{{ $user->email }}</th>
                                         <th class="align-middle">
@@ -73,7 +75,7 @@
                                                 data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}"><i class="fas fa-user-circle"></i></a>
                                             @if($user->id == Auth::user()->id || Auth::user()->hasRole('Administrador'))
                                             <a href="{{ route('ProfileEdit',['id'=>$user->id]) }}" class="btn btn-outline-info"
-                                                data-toggle="tooltip" data-placement="top" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
+                                                data-toggle="tooltip" data-placement="right" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
                                             @endif
                                         </th>
                                     </tr>

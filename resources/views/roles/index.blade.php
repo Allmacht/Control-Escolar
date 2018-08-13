@@ -65,7 +65,7 @@
                                         @endforeach
                                     </td>
                                     <td class="align-middle">
-                                        @if($role->name != "Administrador")
+                                        @if($role->name != "Administrador" && $role->name != "Coordinador" && $role->name != "Alumno" && $role->name != "Docente")
                                             <a href="{{ route('RoleEdit',['id'=>$role->id]) }}" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="left" 
                                                 title="Modificar"><i class="fas fa-edit"></i></a>
                                             <span data-toggle="tooltip" data-placement="right" title="Eliminar">

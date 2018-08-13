@@ -73,7 +73,15 @@ class UsersController extends Controller
             'rfc' => 'nullable|min:12|max:13|unique:users',
             'nip' => 'nullable|unique:users|max:4',
             'email' => 'unique:users',
-            'name' => 'unique:users|min:3|max:12'
+            'name' => 'unique:users|min:3|max:12',
+            'profile_picture' => 'required|image|max:3072'
+        ],[
+            'name.unique' => 'El nombre de usuario ya existe',
+            'email.unique' => 'El correo electrónico está asociado a otra cuenta',
+            'nip.unique' => 'El NIP está asociado a otra cuenta',
+            'curp.unique' => 'La CURP ya fue registrada',
+            'professional_license.unique' => 'La cédula profesional ya existe',
+            'rfc.unique' => 'El RFC ya existe',
         ]);
 
         $user = new User();
@@ -105,10 +113,22 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-
         $user->save();
-
+        
         $user->assignRole($request->role);
+
+
+        if (\File::exists(public_path('/images/profile_pictures/', $user->id))) :
+            \File::delete(public_path('/images/profile_pictures/' . $user->id));
+        endif;
+
+        $file = $request->file('profile_picture');
+        $name = $user->id;
+
+        $file->move(public_path() . '/images/profile_pictures/', $name);
+
+        $user->profile_picture = $name;
+        $user->save();
 
         return redirect()->route('administrativos')->with('status','Administrativo registrado correctamente');
     }

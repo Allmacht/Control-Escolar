@@ -136,8 +136,12 @@
                     @if(Auth::user()->hasRole('Administrador'))
                         <a id="item2" href="{{ route('Roles') }}" class="list-group-item list-group-item-action"><i class="fas fa-pencil-ruler"></i>{{ __('Roles') }}</a>
                         <a id="item3" href="{{ route('Scholarships') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate"></i>{{ __('Becas') }}</a>
+<<<<<<< HEAD
             <!--cardex-->
                         <a id="item4" href="{{ route('Kardex') }}" class="list-group-item list-group-item-action"><i class="fas fa-certificate"></i>{{ __('kardex') }}</a>
+=======
+                        
+>>>>>>> edff2502f15e7b99494e9c922602b07ee79d7acb
                     @endif
                 @endif
             </div>

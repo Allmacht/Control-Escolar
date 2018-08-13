@@ -57,9 +57,13 @@ Route::get('/home', 'HomeController@index')->name('home');
        Route::post('becas/softdelete', 'ScholarshipController@destroy')->name('ScholarshipSoftdelete');
     });
 
-    //User control
+    //Administrativos vista
     Route::group(['middleware'=>['web','CheckPermission:Ver']], function(){
         Route::get('Administrativos', 'UsersController@index')->name('administrativos');
+    });
+
+    //Administrativos Control
+    Route::group(['middleware'=>['web','CheckPermission:Crear']], function(){
         Route::get('Administrativos/create', 'UsersController@create')->name('AdminCreate');
         Route::post('Administrativos/store', 'UsersController@store')->name('AdminStore');
     });
