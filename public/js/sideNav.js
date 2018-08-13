@@ -17,9 +17,12 @@ function mostrar() {
     if (document.getElementById("item2")) {
         document.getElementById("item2").style.transition = "500ms";
     }
-    if (document.getElementById("item2")) {
+    if (document.getElementById("item3")) {
         document.getElementById("item3").style.transition = "500ms";
     }
+    if (document.getElementById("item4")) {
+        document.getElementById("item4").style.transition = "500ms";
+    }    
 }
    
 
@@ -45,6 +48,8 @@ function ocultar(){
     if(document.getElementById("item3")){
         document.getElementById("item3").style.transition = "0s";
     }
-   
+    if(document.getElementById("item4")){
+        document.getElementById("item4").style.transition = "0s";
+    }
 
 }

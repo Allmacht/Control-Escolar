@@ -73,3 +73,9 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('roles/{id}/edit', 'RoleController@edit')->where('id','[0-9]+')->name('RoleEdit')->middleware('CheckRoleID');
         Route::post('roles/{id}/update', 'RoleController@update')->where('id','[0-9]+')->name('RoleUpdate')->middleware('CheckRoleID');
     });
+    //kardex
+    
+    Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
+        Route::get('kardex','kardexController@index')->name('Kardex');
+        Route::get('kardex/generar','kardexController@generar')->name('Generar');
+    });
