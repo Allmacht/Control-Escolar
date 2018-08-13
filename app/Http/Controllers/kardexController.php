@@ -12,8 +12,9 @@ class kardexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {  
+        return view('Kardex.index');
+        
     }
 
     /**

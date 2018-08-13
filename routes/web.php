@@ -76,6 +76,6 @@ Route::get('/home', 'HomeController@index')->name('home');
     //kardex
     
     Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
-        Route::get('kardex','kardexController@index')->name('Kardex');
-        Route::get('kardex/generar','kardexController@generar')->name('Generar');
+        Route::get('Kardex','kardexController@index')->name('Kardex');
     });
+    
