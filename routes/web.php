@@ -42,7 +42,12 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('perfil/{id}/edit', 'UserController@edit')->name('ProfileEdit')->where('id', '[0-9]+')->middleware('CheckUser');
         Route::post('perfil/{id}/update', 'UserController@update')->name('ProfileUpdate')->where('id', '[0-9]+')->middleware('CheckUser');
         Route::post('perfil/{id}/deleteProfileImage', 'UserController@deleteImage')->name('ProfileDeleteImage')->where('id', '[0-9]+')->middleware('CheckUser');
-        Route::post('perfil/{id}/updateAdmon', 'UserController@updateAdmon')->name('ProfileAdmon')->where('id', '[0-9]+')->middleware('CheckUser');
+    });
+
+    //Profile routes Administrador
+    Route::group(['middleware'=>['web','CheckRole:Administrador']], function(){
+        Route::post('perfil/{id}/updateAdmon', 'UserController@updateAdmon')->name('ProfileAdmon')->where('id', '[0-9]+');
+        Route::post('perfil/{id}/disable', 'UserController@disable')->name('UserDisable')->where('id','[0-9]+');
     });
     
     

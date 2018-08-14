@@ -13,7 +13,7 @@ class kardexController extends Controller
      */
     public function index()
     {  
-        return view('Kardex.index');
+        return view('kardex.index');
         
     }
 

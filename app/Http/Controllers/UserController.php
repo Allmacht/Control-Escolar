@@ -7,6 +7,8 @@ use App\User;
 use App\Scholarship;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -182,8 +184,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function disable($id){
+        /*
+            Comprobar que rol tiene el usuario,
+            Si es maestro, comprobar que no tenga materias asignadas
+            si es así, notificar que deben de reasignar las materias o darlas de baja
+            Si es coordinador, comprobar que no tenga carrera asignada, si es asi,
+            notificar que debe ser reasignada primero antes de continuar.
+        */
+
+        $user = User::findOrfail($id);
+        $user->active = 0;
+        $user->save();
+        
+        if($user->id == Auth::user()->id):
+           Auth::logout();
+           return redirect()->route('inicio')->withErrors('Su cuenta ha sido desactivada');
+        else:
+            if ($user->hasRole('Administrador') || $user->hasRole('Coordinador')):
+                return redirect()->route('administrativos')->with('status', 'Usuario desactivado correctamente');
+            endif;
+        endif;
+    }
+
     public function destroy($id)
     {
-        //
+        
     }
 }

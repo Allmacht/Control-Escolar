@@ -307,6 +307,18 @@
                     @endif
 
                 <!-- FIN INFORMACION DE ADMINISTRADOR -->
+                <!-- DESACTIVAR USUARIO-->
+                    @if(Auth::user()->hasRole('Administrador'))
+                        <div class="col-lg-9 shadow offset-lg-3 datos">
+                            @if($edit == true)
+                               <div class="pulse-btn">
+                                    <button class="btn btn-outline-danger btn-block" data-toggle="modal" data-target="#desactivar">{{ __('Desactivar Usuario') }}</button>
+                                </div>
+
+                            @endif
+                        </div>
+                    @endif
+                <!-- fIN DESACTIVAR USUARIO -->
             </div>
         </div>
 
@@ -323,5 +335,34 @@
         @include('profile.modalEliminar')
 
     <!--FIN MODAL ELIMINAR PROFILE PICTURE-->
+    <!--MODAL DESACTIVAR USUARIO -->
 
+        <div class="modal fade" id="desactivar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Desactivar usuario') }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(Auth::user()->id == $User->id)
+                            <p>{{ __('¿Realmente desea desactivar su cuenta?') }}</p>
+                        @else
+                            <p>{{ __('¿Realmente desea desactivar este perfil?') }}</p>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cerrar') }}</button>
+                        <form action="{{ route('UserDisable',['id'=>$User->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-success">{{ __('Desactivar') }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- FIN MODAL DESACTIVAR USUARIO -->
 @endsection
