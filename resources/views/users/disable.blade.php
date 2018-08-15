@@ -1,19 +1,18 @@
 @extends('layouts.app')
-@section('title','Administrativos')
+@section('title','Administrativos desactivados')
 @section('content')
+
     <div class="container">
         <div class="row">
-            <div class="col-md-12 py-4">
-                <h3>{{ __('Administrativos') }}</h3>
+
+            <div class="col-md-12 py-4 text-center text-lg-left">
+                <h3>{{ __('Administrativos desactivados') }}</h3>
             </div>
-           
-            <div class="col-lg-6 col-sm-12 text-center text-lg-left">
-                 @if(Auth::user()->hasRole('Administrador'))
-                    <a href="{{ route('AdminCreate') }}" class="btn btn-outline-success  mb-3"><i class="fas fa-plus-circle"></i>{{ __(' Nuevo Registro') }}</a>
-                    <a href="{{ route('AdminDisable') }}" class="btn btn-outline-info  mb-3"><i class="fas fa-times"></i>{{ __(' Usuarios desactivados') }}</a>
-                @endif
+
+            <div class="col-lg-6 col-md-12 text-center text-lg-left pb-3">
+                <a href="{{ route('administrativos') }}" class="btn btn-outline-success"><i class="fas fa-chevron-left"></i>{{ __(' Administrativos') }}</a>
             </div>
-            
+
             <div class="col-lg-6 col-sm-12 text-center text-lg-right">
                 <form action="" method="get">
                     <div class="input-group my-1">
@@ -24,6 +23,7 @@
                     </div>
                 </form>
             </div>
+
             <div class="col-lg-6 col-sm-12 offset-lg-3 py-2">
                 @if(session('status'))
                     <div class="col-lg-12">
@@ -36,9 +36,10 @@
                     </div>
                 @endif
             </div>
-            <div class="col-md-12  py-2 my-2">
+            
+            <div class="col-md-12 my-2">
                 <div class="table-responsive">
-                    <table class="table table-hover shadow">
+                    <table class="table table-hover shadow"> 
                         <thead>
                             <tr>
                                 <th>{{ __('Perfil') }}</th>
@@ -50,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($users as $user)
+                            @foreach ($users as $user)
                                 @if($user->hasRole('Administrador') || $user->hasRole('Coordinador'))
                                     <tr>
                                         @if($user->profile_picture != null)
@@ -70,18 +71,19 @@
                                                 {{ $role }}
                                             @endforeach
                                         </th>
-                                        <th class="align-middle">
-                                            <a href="{{ route('ProfileUser',['id'=>$user->id]) }}" class="btn btn-outline-primary"
-                                                data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}"><i class="fas fa-user-circle"></i></a>
-                                            @if($user->id == Auth::user()->id || Auth::user()->hasRole('Administrador'))
-                                            <a href="{{ route('ProfileEdit',['id'=>$user->id]) }}" class="btn btn-outline-info"
-                                                data-toggle="tooltip" data-placement="top" title="{{ __('Modificar') }}"><i class="fas fa-edit"></i></a>
-                                            @endif
+                                        <th>
+                                            <span data-toggle="tooltip" data-placement="left" title="Reactivar">
+                                                <button class="btn btn-outline-success"><i class="fas fa-plus-square"></i></button>
+                                            </span>
+
+                                            <span data-toggle="tooltip" data-placement="right" title="Eliminar">
+                                                <button class="btn btn-outline-danger"><i class="fas fa-times"></i></button>
+                                            </span>
                                         </th>
                                     </tr>
                                 @endif
-                            @empty
-                            @endforelse
+                                
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="col-md-12">
@@ -89,6 +91,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
+
 @endsection

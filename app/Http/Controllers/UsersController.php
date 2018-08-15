@@ -27,9 +27,20 @@ class UsersController extends Controller
         $busqueda = input::get('busqueda');
 
         $users = User::whereActive('1')
-        ->where(DB::raw("CONCAT(name, ' ',email)"),'like',"%$busqueda%")
-        ->paginate(15);
+            ->where(DB::raw("CONCAT(names, ' ',name, ' ',email)"),'like',"%$busqueda%")
+            ->paginate(15);
         return view('users.index', compact('users','busqueda'));
+    }
+
+    public function disable(){
+
+        $busqueda = input::get('busqueda');
+
+        $users = User::whereActive('0')
+            ->where(DB::raw("CONCAT(names, ' ',name, ' ',email)"), 'like', "%$busqueda%")
+            ->paginate(15);
+        
+        return view('users.disable', compact('users','busqueda'));
     }
 
     /**
