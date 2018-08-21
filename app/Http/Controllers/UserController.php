@@ -215,14 +215,6 @@ class UserController extends Controller
         endif;
     }
 
-    public function reactive(Request $request){
-        $id = $request->id;
-        $user = User::findOrfail($id);
-        $user->active = "1";
-        $user->save();
-        return redirect()->route('AdminDisable')->with('status','Usuario reactivado correctamente');
-        
-    }
 
     public function destroy($id)
     {

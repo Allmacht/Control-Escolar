@@ -178,14 +178,30 @@ class UsersController extends Controller
         //
     }
 
+    public function reactive(Request $request)
+    {
+        $id = $request->id;
+        $user = User::findOrfail($id);
+        $user->active = "1";
+        $user->save();
+        return redirect()->route('AdminDisable')->with('status', 'Usuario reactivado correctamente');
+
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request)
+    {   
+        $user = User::findOrfail($request->id);
+
+        if (\File::exists(public_path('/images/profile_pictures/', $user->id))):
+            \File::delete(public_path('/images/profile_pictures/' . $user->id));
+        endif;
+
+        $user->delete();
+        return redirect()->route('AdminDisable')->with('status','Usuario eliminado correctamente');
     }
 }

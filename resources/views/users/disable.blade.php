@@ -78,7 +78,7 @@
                                                 </button>
                                             </span>
                                             <span data-toggle="tooltip" data-placement="right" title="Eliminar">
-                                                <button class="btn btn-outline-danger" data-id="{{ $user->id }}">
+                                                <button class="btn btn-outline-danger open-modal" data-id="{{ $user->id }}" data-toggle="modal" data-target="#eliminar">
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             </span>
@@ -115,6 +115,30 @@
                         @csrf
                         <input type="hidden" name="id" id="id">
                         <button type="submit" class="btn btn-outline-success">{{ __('Reactivar') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="eliminar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('Eliminar usuario') }}</h5>
+                    <button type="button" data-dismiss="modal" class="close">
+                        <span aria-hidden="false">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __('¿Realmente desea eliminar el usuario?, Esta acción es irreversible') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger">{{ __('Cancelar') }}</button>
+                    <form action="{{ route('AdminDestroy') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="id" id="id">
+                        <button type="submit" class="btn btn-outline-success">{{ __('Eliminar') }}</button>
                     </form>
                 </div>
             </div>
