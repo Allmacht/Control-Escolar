@@ -25,11 +25,15 @@ class UserController extends Controller
      public function index($id)
     {
         $User = User::findOrfail($id);
-        $scholarships = Scholarship::whereActive('1')->get();
-        $roles = Role::all();
-        $edit = false;
-        return view('profile.index', compact('User','edit','scholarships','roles'));
 
+        if($User->active == false):
+            abort(404);
+        else:
+            $scholarships = Scholarship::whereActive('1')->get();
+            $roles = Role::all();
+            $edit = false;
+            return view('profile.index', compact('User','edit','scholarships','roles'));
+        endif;
     }
 
     /**
@@ -73,10 +77,14 @@ class UserController extends Controller
     public function edit($id)
     {
         $User = User::findOrfail($id);
-        $scholarships = Scholarship::whereActive('1')->get();
-        $edit = true;
-        $roles = Role::all();
-        return view('profile.index', compact('User','edit','scholarships','roles'));
+        if($User->active == false):
+            abort(404);
+        else:
+            $scholarships = Scholarship::whereActive('1')->get();
+            $edit = true;
+            $roles = Role::all();
+            return view('profile.index', compact('User','edit','scholarships','roles'));
+        endif;
     }
 
     /**
@@ -205,6 +213,15 @@ class UserController extends Controller
                 return redirect()->route('administrativos')->with('status', 'Usuario desactivado correctamente');
             endif;
         endif;
+    }
+
+    public function reactive(Request $request){
+        $id = $request->id;
+        $user = User::findOrfail($id);
+        $user->active = "1";
+        $user->save();
+        return redirect()->route('AdminDisable')->with('status','Usuario reactivado correctamente');
+        
     }
 
     public function destroy($id)

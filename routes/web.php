@@ -72,6 +72,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('Administrativos/create', 'UsersController@create')->name('AdminCreate');
         Route::post('Administrativos/store', 'UsersController@store')->name('AdminStore');
         Route::get('Administrativos/disabled', 'UsersController@disable')->name('AdminDisable');
+        Route::post('Administrativos/reactive', 'UserController@reactive')->name('AdminReactive');
     });
 
     //Roles control

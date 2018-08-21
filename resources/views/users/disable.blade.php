@@ -73,11 +73,14 @@
                                         </th>
                                         <th>
                                             <span data-toggle="tooltip" data-placement="left" title="Reactivar">
-                                                <button class="btn btn-outline-success"><i class="fas fa-plus-square"></i></button>
+                                                <button class="btn btn-outline-success open-modal" data-toggle="modal" data-target="#reactivar" data-id="{{ $user->id }}">
+                                                    <i class="fas fa-plus-square"></i>
+                                                </button>
                                             </span>
-
                                             <span data-toggle="tooltip" data-placement="right" title="Eliminar">
-                                                <button class="btn btn-outline-danger"><i class="fas fa-times"></i></button>
+                                                <button class="btn btn-outline-danger" data-id="{{ $user->id }}">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
                                             </span>
                                         </th>
                                     </tr>
@@ -94,4 +97,33 @@
         </div>    
     </div>
 
+    <div class="modal fade" id="reactivar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('Reactivar usuario') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __('¿Realmente desea reactivar el usuario?') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                    <form action="{{ route('AdminReactive') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="id" id="id">
+                        <button type="submit" class="btn btn-outline-success">{{ __('Reactivar') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/modalDatos.js') }}"></script>
+@endsection
+
