@@ -131,7 +131,7 @@
             <!-- ELEMENTOS DEL MENU -->
 
             <div class="list-group list-group-flush items text-left" id="items">
-                <a id="item" href="{{ url('/') }}" class="list-group-item list-group-item-action"><i class="fas fa-home"></i>{{ __('Inicio') }}</a>
+                <a id="item" href="{{ route('home') }}" class="list-group-item list-group-item-action"><i class="fas fa-home"></i>{{ __('Inicio') }}</a>
                 <a id="item1" href="{{ route('administrativos') }}" class="list-group-item list-group-item-action"><i class="fas fa-user"></i>{{ __('Administrativos') }}</a>
                 @if(Auth::check())
                     @if(Auth::user()->hasRole('Administrador'))
@@ -171,11 +171,6 @@
     
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
     <script src="{{ asset('js/sideNav.js') }}"></script>
 
     @yield('scripts')
