@@ -24,7 +24,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             @if(Auth::check())
-                <i class="fas fa-bars d-none d-lg-block "  onclick="openNav()"></i>
+                <i class="fas fa-bars d-none d-lg-block " data-toggle="tooltip" data-placement="right" title="Menú" onclick="openNav()"></i>
             @endif
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('icons/science.png') }}" alt="" width="40px">
