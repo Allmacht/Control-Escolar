@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('title','Panel de control')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -10,7 +13,7 @@
         </div>-->
         <div class="col-md-12 py-3">
             <div class="col-md-3 float-left py-4 d-none d-lg-block sticky-top" style="z-index: 2;">       
-                <div class="card text-center" style="width: 15rem;">
+                <div class="card text-center shadow" style="width: 15rem;">
                     @if($user->profile_picture == null)
                         <img  class="rounded card-img-top" src="{{ asset('images/default.png') }}" alt="" >
                     @else
@@ -96,9 +99,33 @@
                         </div>
                     </div>
                 @endif
+                
+                @if(Auth::user()->hasRole('Administrador','Coordinador'))
+                    <div class="alert alert-dark">
+                        <h4 class="alert-heading">{{ __('Materias') }}</h4>
+                        <p>{{ __('Listado de materias por carrera y semestre') }}</p>
+                        <div class="text-right">
+                            <a href="#" class="btn btn-outline-dark"
+                            ata-toggle="tooltip" data-placement="right" title="Ir">
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
 
-                
-                
+                @if(Auth::user()->hasRole('Administrador','Coordinador','Docente'))
+                    <div class="alert alert-success">
+                        <h4 class="alert-heading">{{ __('Mis materias') }}</h4>
+                        <p>{{ __('listado de mis materias asignadas') }}</p>
+                        <hr>
+                        <div class="text-right">
+                            <a href="#" class="btn btn-outline-success"
+                            data-toggle="tooltip" data-placement="right" title="Ir">
+                                 <i class="fas fa-arrow-alt-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
