@@ -27,7 +27,7 @@
                                 {{ $role }}
                             @endforeach
                         </p>
-                    </div>
+                    </div>  
                 </div>
             </div>
             <div class="float-right col-lg-8 col-md-12 col-sm-12 py-3">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                @if(Auth::user()->hasRole('Administrador','Coordinador','Docente'))
+                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
                     <div class="alert alert-danger">
                         <h4 class="alert-heading">{{ __('Alumnos') }}</h4>
                         <p>{{ __('Listado de alumnos') }}</p>
@@ -72,7 +72,7 @@
                     </div>
                 @endif
                 
-                 @if(Auth::user()->hasRole('Administrador','Coordinador','Docente'))
+                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
                     <div class="alert alert-primary">
                         <h4 class="alert-heading">{{ __('Carreras') }}</h4>
                         <p>{{ __('Listado de carreras disponibles') }}</p>
@@ -100,20 +100,20 @@
                     </div>
                 @endif
                 
-                @if(Auth::user()->hasRole('Administrador','Coordinador'))
+                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador'))
                     <div class="alert alert-dark">
                         <h4 class="alert-heading">{{ __('Materias') }}</h4>
                         <p>{{ __('Listado de materias por carrera y semestre') }}</p>
                         <div class="text-right">
                             <a href="#" class="btn btn-outline-dark"
-                            ata-toggle="tooltip" data-placement="right" title="Ir">
+                            data-toggle="tooltip" data-placement="right" title="Ir">
                                 <i class="fas fa-arrow-alt-circle-right"></i>
                             </a>
                         </div>
                     </div>
                 @endif
 
-                @if(Auth::user()->hasRole('Administrador','Coordinador','Docente'))
+                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
                     <div class="alert alert-success">
                         <h4 class="alert-heading">{{ __('Mis materias') }}</h4>
                         <p>{{ __('listado de mis materias asignadas') }}</p>
@@ -122,6 +122,21 @@
                             <a href="#" class="btn btn-outline-success"
                             data-toggle="tooltip" data-placement="right" title="Ir">
                                  <i class="fas fa-arrow-alt-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                @if(Auth::user()->hasRole('Alumno') || Auth::user()->hasRole('Administrador'))
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">{{ __('Kardex') }}</h4>
+                        <p>{{ __('Historial de materias y calificaciones') }}</p>
+                        <hr>
+                        <div class="text-right">
+                            <a href="{{ route('Kardex') }}" class="btn btn-outline-danger"
+                            data-toggle="tooltip" data-placement="right" title="Ir"
+                            >
+                                <i class="fas fa-arrow-alt-circle-right"></i>
                             </a>
                         </div>
                     </div>
