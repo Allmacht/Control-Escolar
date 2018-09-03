@@ -32,78 +32,31 @@
             </div>
             <div class="float-right col-lg-8 col-md-12 col-sm-12 py-3">
 
-                <h3 class="pb-3 text-lg-left text-center">Dashboard</h3>
-
-                <div class="alert alert-success">
-                    <h4 class="alert-heading">{{ __('Administrativos') }}</h4>
-                    <p>{{ __('Listado de personal administrativo') }}</p>
-                    <hr>
-                    <div class="text-right">
-                        <a href="{{ route('administrativos') }}" class="btn btn-outline-success" 
-                        data-toggle="tooltip" data-placement="right" title="Ir">
-                            <i class="fas fa-arrow-alt-circle-right"></i> 
-                        </a>
-                    </div>
+                <div class="col-md-12 align-middle">
+                    <h3 class="pb-3 text-lg-left text-center">
+                        Dashboard
+                        <span class="fas fa-bars ml-3" style="font-size: 1.2rem;" data-toggle="collapse" data-target="#collapse"></span>
+                    </h3>
                 </div>
-
-                <div class="alert alert-dark">
-                    <h4 class="alert-heading">{{ __('Docentes') }}</h4>
-                    <p>{{ __('Listado de docentes') }}</p>
-                    <hr>
-                    <div class="text-right">
-                        <a href="#" class="btn btn-outline-dark"
-                        data-toggle="tooltip" data-placement="right" title="Ir">
-                            <i class="fas fa-arrow-alt-circle-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
-                    <div class="alert alert-danger">
-                        <h4 class="alert-heading">{{ __('Alumnos') }}</h4>
-                        <p>{{ __('Listado de alumnos') }}</p>
-                        <hr>
-                        <div class="text-right">
-                            <a href="#" class="btn btn-outline-danger" 
-                            data-toggle="tooltip" data-placement="right" title="Ir">
-                                <i class="fas fa-arrow-alt-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endif
                 
-                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
-                    <div class="alert alert-primary">
-                        <h4 class="alert-heading">{{ __('Carreras') }}</h4>
-                        <p>{{ __('Listado de carreras disponibles') }}</p>
-                        <hr>
-                        <div class="text-right">
-                            <a href="#" class="btn btn-outline-primary"
-                            data-toggle="tooltip" data-placement="right" title="Ir">
-                                <i class="fa fa-arrow-alt-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endif
 
-                @if(Auth::user()->hasRole('Administrador'))
-                    <div class="alert alert-warning">
-                        <h4 class="alert-heading">{{ ('Roles') }}</h4>
-                        <p>{{ ('Listado de roles disponibles') }}</p>
+                <div class="collapse" id="collapse">
+                    <div class="alert alert-success">
+                        <h4 class="alert-heading">{{ __('Administrativos') }}</h4>
+                        <p>{{ __('Listado de personal administrativo') }}</p>
                         <hr>
                         <div class="text-right">
-                            <a href="{{ route('Roles') }}" class="btn btn-outline-warning"
+                            <a href="{{ route('administrativos') }}" class="btn btn-outline-success" 
                             data-toggle="tooltip" data-placement="right" title="Ir">
-                                <i class="fas fa-arrow-alt-circle-right"></i>
+                                <i class="fas fa-arrow-alt-circle-right"></i> 
                             </a>
                         </div>
                     </div>
-                @endif
-                
-                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador'))
+
                     <div class="alert alert-dark">
-                        <h4 class="alert-heading">{{ __('Materias') }}</h4>
-                        <p>{{ __('Listado de materias por carrera y semestre') }}</p>
+                        <h4 class="alert-heading">{{ __('Docentes') }}</h4>
+                        <p>{{ __('Listado de docentes') }}</p>
+                        <hr>
                         <div class="text-right">
                             <a href="#" class="btn btn-outline-dark"
                             data-toggle="tooltip" data-placement="right" title="Ir">
@@ -111,36 +64,92 @@
                             </a>
                         </div>
                     </div>
-                @endif
 
-                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
-                    <div class="alert alert-success">
-                        <h4 class="alert-heading">{{ __('Mis materias') }}</h4>
-                        <p>{{ __('listado de mis materias asignadas') }}</p>
-                        <hr>
-                        <div class="text-right">
-                            <a href="#" class="btn btn-outline-success"
-                            data-toggle="tooltip" data-placement="right" title="Ir">
-                                 <i class="fas fa-arrow-alt-circle-right"></i>
-                            </a>
+                    @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
+                        <div class="alert alert-danger">
+                            <h4 class="alert-heading">{{ __('Alumnos') }}</h4>
+                            <p>{{ __('Listado de alumnos') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="#" class="btn btn-outline-danger" 
+                                data-toggle="tooltip" data-placement="right" title="Ir">
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                    
+                    @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
+                        <div class="alert alert-primary">
+                            <h4 class="alert-heading">{{ __('Carreras') }}</h4>
+                            <p>{{ __('Listado de carreras disponibles') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="#" class="btn btn-outline-primary"
+                                data-toggle="tooltip" data-placement="right" title="Ir">
+                                    <i class="fa fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
 
-                @if(Auth::user()->hasRole('Alumno') || Auth::user()->hasRole('Administrador'))
-                    <div class="alert alert-danger">
-                        <h4 class="alert-heading">{{ __('Kardex') }}</h4>
-                        <p>{{ __('Historial de materias y calificaciones') }}</p>
-                        <hr>
-                        <div class="text-right">
-                            <a href="{{ route('Kardex') }}" class="btn btn-outline-danger"
-                            data-toggle="tooltip" data-placement="right" title="Ir"
-                            >
-                                <i class="fas fa-arrow-alt-circle-right"></i>
-                            </a>
+                    @if(Auth::user()->hasRole('Administrador'))
+                        <div class="alert alert-warning">
+                            <h4 class="alert-heading">{{ ('Roles') }}</h4>
+                            <p>{{ ('Listado de roles disponibles') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="{{ route('Roles') }}" class="btn btn-outline-warning"
+                                data-toggle="tooltip" data-placement="right" title="Ir">
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                    
+                    @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador'))
+                        <div class="alert alert-dark">
+                            <h4 class="alert-heading">{{ __('Materias') }}</h4>
+                            <p>{{ __('Listado de materias por carrera y semestre') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="#" class="btn btn-outline-dark"
+                                data-toggle="tooltip" data-placement="right" title="Ir">
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
+                        <div class="alert alert-success">
+                            <h4 class="alert-heading">{{ __('Mis materias (Docente)') }}</h4>
+                            <p>{{ __('listado de mis materias asignadas') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="#" class="btn btn-outline-success"
+                                data-toggle="tooltip" data-placement="right" title="Ir">
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(Auth::user()->hasRole('Alumno') || Auth::user()->hasRole('Administrador'))
+                        <div class="alert alert-danger">
+                            <h4 class="alert-heading">{{ __('Kardex') }}</h4>
+                            <p>{{ __('Historial de materias y calificaciones') }}</p>
+                            <hr>
+                            <div class="text-right">
+                                <a href="{{ route('Kardex') }}" class="btn btn-outline-danger"
+                                data-toggle="tooltip" data-placement="right" title="Ir"
+                                >
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
