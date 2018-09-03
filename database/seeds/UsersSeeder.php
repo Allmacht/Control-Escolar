@@ -50,15 +50,15 @@ class UsersSeeder extends Seeder
 
         $user1->assignRole('Administrador');
         
-        User::create([
-            'name' => 'Admin1',
-            'names' =>'admin admin',
+        $user2 = User::create([
+            'name' => 'coord1',
+            'names' => 'coord coord',
             'email' => 'ulises.cr@gmail.com',
             'nip' => '1235',
             'card_id' => 'AAAAAAAAAA133',
             'password' => bcrypt('admin'),
-            'maternal_surname' => 'Admin',
-            'paternal_surname' => 'admin',
+            'maternal_surname' => 'coord',
+            'paternal_surname' => 'coord',
             'gender' => 'masculino',
             'birthdate' => '1999-12-30',
             'curp' => 'AAAAAAAAAAAAAAAAAB',
@@ -81,5 +81,7 @@ class UsersSeeder extends Seeder
             'rfc' => 'AAAA999999BAA',
             'scholarship_id' => $scholarId,
         ]);
+
+        $user2->assignRole('Coordinador');
     }
 }

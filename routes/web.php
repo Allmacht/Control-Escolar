@@ -91,3 +91,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('Kardex','kardexController@index')->name('Kardex');
     });
     
+    //Degrees
+    Route::group(['middleware'=>['web']], function () {
+        Route::get('degrees', 'DegreesController@index')->name('Degrees');
+    });

@@ -40,7 +40,7 @@
                 </div>
                 
 
-                <div class="collapse" id="collapse">
+                <div class="collapse show" id="collapse" >
                     <div class="alert alert-success">
                         <h4 class="alert-heading">{{ __('Administrativos') }}</h4>
                         <p>{{ __('Listado de personal administrativo') }}</p>
@@ -85,7 +85,7 @@
                             <p>{{ __('Listado de carreras disponibles') }}</p>
                             <hr>
                             <div class="text-right">
-                                <a href="#" class="btn btn-outline-primary"
+                                <a href="{{ route('Degrees') }}" class="btn btn-outline-primary"
                                 data-toggle="tooltip" data-placement="right" title="Ir">
                                     <i class="fa fa-arrow-alt-circle-right"></i>
                                 </a>
