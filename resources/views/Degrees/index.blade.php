@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row">
 
-            <div class="nav" aria-label="breadcrumb">
-                <ol class="breadcrumb">
+            <div class="nav" aria-label="breadcrumb" >
+                <ol class="breadcrumb" style="background-color:white;">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboad</a></li>
                     <li class="breadcrumb-item active" aria-current="active">{{ __('Carreras') }}</li>
                 </ol>
@@ -66,14 +66,35 @@
                                     <th class="align-middle">{{ $degree->card_id }}</th>
                                     <th class="align-middle">{{ $degree->degree_name }}</th>
                                     <th class="align-middle">{{ $degree->semesters }}</th>
-                                    <th class="align-middle">{{ $degree->user->name }}</th>
+                                    <th class="align-middle">
+                                       
+                                        <a href="{{ route('ProfileUser',['id'=>$degree->user->id]) }}" class="btn btn-outline-secondary align-middle" 
+                                        data-toggle="tooltip" data-placement="left" title="ver Perfil">
+                                            @if($degree->user->profile_picture != null)
+                                                <img class="rounded-circle align-middle" src="{{ asset('images/profile_picture/'.$degree->user->id) }}" alt="" width="30px">
+                                            @else
+                                                <img class="rounded-circle align-middle" src="{{ asset('images/default.png') }}" alt="" width="30px">
+                                            @endif
+                                            {{ $degree->user->names }}
+                                        </a>
+                                    </th>
                                     <th class="align-middle">
                                         <span data-toggle="tooltip" data-placement="left" title="Modificar">
                                             <a href="" class="btn btn-outline-primary">
                                                 <span class="fas fa-edit"></span>
                                             </a>
                                         </span>
-
+                                        <span data-toggle="tooltip" data-placement="top" title="Ver">
+                                            <a href="{{ route('DegreeShow',['id'=>$degree->id]) }}" class="btn btn-outline-warning">
+                                                <span class="fas fa-eye"></span>
+                                            </a>
+                                        </span>
+                                        <span data-toggle="tooltip" data-placement="right" title="Desactivar">
+                                            <button class="btn btn-outline-danger open-modal" data-toggle="modal" 
+                                            data-target="#eliminar" data-id="{{ $degree->id }}">
+                                                <span class="fas fa-times-circle"></span>
+                                            </button>
+                                        </span>
                                     </th>
                                 </tr>   
                             @empty
@@ -81,8 +102,16 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="col-md-12">
+                        {{ $degrees->appends(['busqueda'=>$busqueda])->links() }}   
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('Degrees.eliminarModal')
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/modalDatos.js') }}"></script>
 @endsection

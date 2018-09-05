@@ -38,4 +38,5 @@ class User extends Authenticatable
     public function Scholarship(){
         return $this->belongsTo(Scholarship::class);
     }
+    
 }

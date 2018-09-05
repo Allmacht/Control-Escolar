@@ -22,8 +22,10 @@ class DegreesController extends Controller
         $user = \Auth::user();
         if($user->hasRole('Administrador') || $user->hasRole('Coordinador') || $user->hasRole('Docente')):
             $busqueda = Input::get('busqueda');
-            $degrees = Degree::whereStatus('1')->get();
-            return view('Degrees.index', compact('degrees','busqueda'))->with('status','nada');
+            $degrees = Degree::whereStatus('1')
+                ->where('degree_name','like',"%$busqueda%")
+                ->paginate(1);
+            return view('Degrees.index', compact('degrees','busqueda'))->with('status','nada'); 
         else:
             abort(404);
         endif;
@@ -58,7 +60,8 @@ class DegreesController extends Controller
      */
     public function show($id)
     {
-        //
+        $degree = Degree::findOrfail($id);
+        return view('Degrees.show', compact('degree'));
     }
 
     /**
@@ -90,6 +93,20 @@ class DegreesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function disabled(Request $request){
+        if(\Auth::user()->hasRole('Administrador')):
+            $degree = Degree::findOrfail($request->id);
+            $degree->status = 0;
+            $degree->save();
+
+            return redirect()->route('Degrees')->with('status','Carrera desactivada correctamente');
+        else:
+            abort(404);
+        endif;
+        
+    }
+
     public function destroy($id)
     {
         //
