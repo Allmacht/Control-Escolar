@@ -93,7 +93,7 @@
                     </table>
 
                     <div class="col-md-12 text-center pt-3">
-                        <a href="" class="btn btn-outline-primary">
+                        <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
                             <span class="fas fa-edit"></span>
                             {{ __(' Editar') }}
                         </a>
