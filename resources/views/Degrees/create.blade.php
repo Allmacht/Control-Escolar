@@ -33,7 +33,7 @@
             <form action="{{ route('DegreeStore') }}" method="post">
                 @csrf
                 <div class="row">
-                    <div class="col-md 12">
+                    <div class="col-md-12">
                         <div class="form-row">
                             <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                 <label for="card_id">{{ __('Clave') }}</label>

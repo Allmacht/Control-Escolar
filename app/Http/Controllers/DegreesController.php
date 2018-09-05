@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Degree;
 use App\User;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 class DegreesController extends Controller
 {
     /**
@@ -99,7 +100,9 @@ class DegreesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::whereActive('1')->get();
+        $degree = Degree::findOrfail($id);
+        return view('Degrees.edit', compact('users','degree'));
     }
 
     /**
@@ -111,7 +114,30 @@ class DegreesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'card_id' => ['required','max:20', Rule::unique('degrees')->ignore($request->id)],
+            'degree_name' => ['required', Rule::unique('degrees')->ignore($request->id)],
+            'user_id' => 'required',
+            'semesters' => 'required|gte:1',
+            'description' => 'nullable|max:50'
+        ], [
+            'card_id.unique' => 'La clave introducida ya ha sido registrada',
+            'card_id.max' => 'El tamaño de la clave introducida es mayor al permitido',
+            'degree_name.unique' => 'El nombre de la carrera ya ha sido registrado',
+            'semesters.gte' => 'El número de semestres debe ser mayor a 0',
+            'description.max' => 'La descripción supera el tamaño permitido'
+        ]);
+
+        $degree = Degree::findOrfail($id);
+        $degree->card_id = $request->card_id;
+        $degree->degree_name = $request->degree_name;
+        $degree->semesters = $request->semesters;
+        $degree->user_id = $request->user_id;
+        $degree->description = $request->description;
+        
+        $degree->save();
+
+        return redirect()->route('Degrees')->withStatus('La carrera ha sido mofidicada correctamente');
     }
 
     /**

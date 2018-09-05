@@ -88,7 +88,7 @@
                                     </th>
                                     <th class="align-middle">
                                         <span data-toggle="tooltip" data-placement="left" title="Modificar">
-                                            <a href="" class="btn btn-outline-primary">
+                                            <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
                                                 <span class="fas fa-edit"></span>
                                             </a>
                                         </span>
