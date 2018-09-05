@@ -25,7 +25,7 @@ class DegreesController extends Controller
             $busqueda = Input::get('busqueda');
             $degrees = Degree::whereStatus('1')
                 ->where('degree_name','like',"%$busqueda%")
-                ->paginate(1);
+                ->paginate(15);
             return view('Degrees.index', compact('degrees','busqueda'))->with('status','nada'); 
         else:
             abort(404);
@@ -51,7 +51,32 @@ class DegreesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+            'card_id'=>'unique:degrees|max:20|required',
+            'degree_name' => 'unique:degrees|required',
+            'user_id' => 'required',
+            'semesters' => 'required|gte:1',
+            'description' => 'nullable|max:50'
+        ],[
+            'card_id.unique' => 'La clave introducida ya ha sido registrada',
+            'card_id.max' => 'El tamaño de la clave introducida es mayor al permitido',
+            'degree_name.unique' => 'El nombre de la carrera ya ha sido registrado',
+            'semesters.gte' => 'El número de semestres debe ser mayor a 0',
+            'description.max' => 'La descripción supera el tamaño permitido'
+        ]); 
+        
+        $degree = new Degree();
+        $degree->card_id = $request->card_id;
+        $degree->degree_name = $request->degree_name;
+        $degree->semesters = $request->semesters;
+        $degree->description = $request->description;
+        $degree->user_id = $request->user_id;
+
+        $degree->save();
+
+        return redirect()->route('Degrees')->withStatus('Carrera registrada correctamente');
+       
     }
 
     /**

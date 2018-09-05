@@ -94,7 +94,8 @@ Route::get('/home', 'HomeController@index')->name('home');
     //Degrees
     Route::group(['middleware'=>['web']], function () {
         Route::get('degrees', 'DegreesController@index')->name('Degrees');
+        Route::post('degree/stored', 'DegreesController@store')->name('DegreeStore')->middleware('CheckRole:Administrador');
         Route::get('degree/{id}','DegreesController@show')->name('DegreeShow')->where('id','[0-9]+');
         Route::post('degrees/disabled', 'DegreesController@disabled')->name('DegreeDisabled');
-        Route::get('degree/create', 'DegreesController@create')->name('DegreeCreate');
+        Route::get('degree/create', 'DegreesController@create')->name('DegreeCreate')->middleware('CheckRole:Administrador');
     });

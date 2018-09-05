@@ -7,7 +7,7 @@
 
             <div class="nav" aria-label="breadcrumb" >
                 <ol class="breadcrumb" style="background-color:white;">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboad</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="active">{{ __('Carreras') }}</li>
                 </ol>
             </div>
@@ -72,9 +72,14 @@
                                     <th class="align-middle">
                                        
                                         <a href="{{ route('ProfileUser',['id'=>$degree->user->id]) }}" class="btn btn-outline-secondary align-middle" 
-                                        data-toggle="tooltip" data-placement="left" title="ver Perfil">
+                                        data-toggle="tooltip" data-placement="left" 
+                                        @if(Auth::user()->id == $degree->user->id)
+                                            title="Mi Perfil"
+                                        @else
+                                            title="Ver perfil"
+                                        @endif>
                                             @if($degree->user->profile_picture != null)
-                                                <img class="rounded-circle align-middle" src="{{ asset('images/profile_picture/'.$degree->user->id) }}" alt="" width="30px">
+                                                <img class="rounded-circle align-middle" src="{{ asset('images/profile_pictures/'.$degree->user->id) }}" alt="" width="30px">
                                             @else
                                                 <img class="rounded-circle align-middle" src="{{ asset('images/default.png') }}" alt="" width="30px">
                                             @endif

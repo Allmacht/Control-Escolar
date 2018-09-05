@@ -73,9 +73,15 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('ProfileUser',['id'=>$degree->user->id]) }}" class="btn btn-outline-secondary" 
-                                    data-toggle="tooltip" data-placement="right" title="Ver perfil">
+                                    data-toggle="tooltip" data-placement="right" 
+                                    @if(Auth::user()->id == $degree->user->id) 
+                                        title="Mi perfil"
+                                    @else
+                                        title="Ver perfil"
+                                    @endif;
+                                    >
                                         @if($degree->user->profile_picture != null)
-                                            <img class="rounded-circle align-middle" src="{{ asset('images/profile_picture/'.$degree->user->id) }}" width="30px">
+                                            <img class="rounded-circle align-middle" src="{{ asset('images/profile_pictures/'.$degree->user->id) }}" width="30px">
                                         @else
                                             <img class="rounded-circle align-middle" src="{{ asset('images/default.png') }}" width="30px">
                                         @endif
