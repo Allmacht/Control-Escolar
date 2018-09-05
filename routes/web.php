@@ -96,4 +96,5 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('degrees', 'DegreesController@index')->name('Degrees');
         Route::get('degree/{id}','DegreesController@show')->name('DegreeShow')->where('id','[0-9]+');
         Route::post('degrees/disabled', 'DegreesController@disabled')->name('DegreeDisabled');
+        Route::get('degree/create', 'DegreesController@create')->name('DegreeCreate');
     });

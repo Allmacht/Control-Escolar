@@ -19,7 +19,10 @@
 
             <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-left">
                 @if(Auth::user()->hasRole('Administrador'))
-                    <a href="#" class="btn btn-outline-success mb-3"><span class="fas fa-plus"></span>{{ __(' Nuevo registro') }}</a>
+                    <a href="{{ route('DegreeCreate') }}" class="btn btn-outline-success mb-3">
+                        <span class="fas fa-plus"></span>
+                        {{ __(' Nuevo registro') }}
+                    </a>
                     <a href="#" class="btn btn-outline-info mb-3"><span class="fas fa-times"></span>{{ __(' Carreras Desactivadas') }}</a>
                 @endif
             </div>

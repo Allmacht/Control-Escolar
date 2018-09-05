@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Degree;
+use App\User;
 use Illuminate\Support\Facades\Input;
 class DegreesController extends Controller
 {
@@ -38,7 +39,8 @@ class DegreesController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::whereActive('1')->get();
+        return view('Degrees.create', compact('users'));
     }
 
     /**
