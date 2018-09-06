@@ -93,10 +93,15 @@
                     </table>
 
                     <div class="col-md-12 text-center pt-3">
+                        <a href="{{ route('Degrees') }}" class="btn btn-outline-danger">
+                            <span class="fas fa-arrow-left"></span>
+                            {{ __(' Regresar') }}
+                        </a>
                         <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
                             <span class="fas fa-edit"></span>
                             {{ __(' Editar') }}
                         </a>
+                        
                     </div>
                 </div>
             </div>

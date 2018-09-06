@@ -1,32 +1,28 @@
 @extends('layouts.app')
-@section('title','Carreras')
+@section('title', 'Carreras desactivadas')
+
 @section('content')
-    
+
     <div class="container">
         <div class="row">
 
-            <div class="nav" aria-label="breadcrumb" >
-                <ol class="breadcrumb" style="background-color:white;">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="active">{{ __('Carreras') }}</li>
+            <div class="nav" aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color: white;">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('Degrees') }}">{{ __('Carreras') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Carreras desactivadas') }}</li>
                 </ol>
             </div>
-            
 
             <div class="col-md-12 py-4">
-                <h3>{{ __('Carreras') }}</h3>
+                <h3>{{ __('Carreras desactivadas') }}</h3>
             </div>
 
-            <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-left">
-                @if(Auth::user()->hasRole('Administrador'))
-                    <a href="{{ route('DegreeCreate') }}" class="btn btn-outline-success mb-3">
-                        <span class="fas fa-plus"></span>
-                        {{ __(' Nuevo registro') }}
-                    </a>
-                    <a href="{{ route('DegreesDisabled') }}" class="btn btn-outline-info mb-3">
-                        <span class="fas fa-times"></span>{{ __(' Carreras Desactivadas') }}
-                    </a>
-                @endif
+            <div class="col-lg-6 col-md-12 col-sm-12  text-center text-lg-left">
+                <a href="{{ route('Degrees') }}" class="btn btn-outline-danger">
+                    <span class="fas fa-arrow-left"></span>
+                    {{ __(' Atrás') }}
+                </a>
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-right">
@@ -53,7 +49,7 @@
                 @endif
             </div>
 
-            <div class="col-md-12 py-2 my-2">
+            <div class="col-md-12 py-2">
                 <div class="table-responsive">
                     <table class="table table-hover shadow">
                         <thead>
@@ -66,7 +62,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($degrees as $degree)
+                            @foreach ($degrees as $degree)
                                 <tr>
                                     <th class="align-middle">{{ $degree->card_id }}</th>
                                     <th class="align-middle">{{ $degree->degree_name }}</th>
@@ -89,27 +85,22 @@
                                         </a>
                                     </th>
                                     <th class="align-middle">
-                                        <span data-toggle="tooltip" data-placement="left" title="Modificar">
-                                            <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
+                                        <span data-toggle="tooltip" data-placement="left" title="Activar">
+                                            <button class="btn btn-outline-success open-modal" data-toggle="modal" 
+                                            data-target="#activar" data-id="{{ $degree->id }}">
                                                 <span class="fas fa-edit"></span>
-                                            </a>
+                                            </button>
                                         </span>
-                                        <span data-toggle="tooltip" data-placement="top" title="Ver">
-                                            <a href="{{ route('DegreeShow',['id'=>$degree->id]) }}" class="btn btn-outline-warning">
-                                                <span class="fas fa-eye"></span>
-                                            </a>
-                                        </span>
-                                        <span data-toggle="tooltip" data-placement="right" title="Desactivar">
+
+                                        <span data-toggle="tooltip" data-placement="right" title="Eliminar">
                                             <button class="btn btn-outline-danger open-modal" data-toggle="modal" 
                                             data-target="#eliminar" data-id="{{ $degree->id }}">
-                                                <span class="fas fa-times-circle"></span>
+                                                <span class="fas fa-times"></span>
                                             </button>
                                         </span>
                                     </th>
-                                </tr>   
-                            @empty
-                                
-                            @endforelse
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="col-md-12">
@@ -119,9 +110,10 @@
             </div>
         </div>
     </div>
-    @include('Degrees.eliminarModal')
+    
+    @include('Degrees.modalDelete')
+    @include('Degrees.modalReactivate')
 @endsection
-
 @section('scripts')
     <script src="{{ asset('js/modalDatos.js') }}"></script>
 @endsection

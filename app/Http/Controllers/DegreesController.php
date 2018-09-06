@@ -92,6 +92,14 @@ class DegreesController extends Controller
         return view('Degrees.show', compact('degree'));
     }
 
+    public function disabled(){
+
+        $busqueda = Input::get('busqueda');
+        $degrees = Degree::whereStatus('0')
+            ->where('Degree_name','like',"%$busqueda%")
+            ->paginate(15);
+        return view('Degrees.disabled', compact('degrees', 'busqueda'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -147,7 +155,10 @@ class DegreesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function disabled(Request $request){
+    public function disable(Request $request){
+
+        //verifiar si la carrera tiene materias activas
+        //solicitar desactivar las materias antes de continuar o si desea desactivarlas junto con la carrera
         if(\Auth::user()->hasRole('Administrador')):
             $degree = Degree::findOrfail($request->id);
             $degree->status = 0;
@@ -160,8 +171,19 @@ class DegreesController extends Controller
         
     }
 
-    public function destroy($id)
+    public function reactivate(Request $request){
+        $degree = Degree::findOrfail($request->id);
+        $degree->status = 1;
+        $degree->save();
+        return redirect()->route('DegreesDisabled')->withStatus('La carrera ha sido activada correctamente');
+    }
+
+    public function destroy(Request $request)
     {
-        //
+        $degree = Degree::findOrfail($request->id);
+        $degree->delete();
+
+        return redirect()->route('DegreesDisabled')->withStatus('La carrera ha sido eliminada correctamente');
+
     }
 }

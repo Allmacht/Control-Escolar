@@ -71,7 +71,7 @@
                                 <span class="fas fa-edit"></span>
                                 {{ __(' Registrar') }}
                             </button>
-                            <a href="" class="btn btn-outline-danger">
+                            <a href="{{ route('Degrees') }}" class="btn btn-outline-danger">
                                 <span class="fas fa-times"></span>
                                 {{ __(' Cancelar') }}
                             </a>
