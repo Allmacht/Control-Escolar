@@ -73,6 +73,7 @@ class DegreesController extends Controller
         $degree->semesters = $request->semesters;
         $degree->description = $request->description;
         $degree->user_id = $request->user_id;
+        $degree->mode =$request->mode;
 
         $degree->save();
 
@@ -142,6 +143,7 @@ class DegreesController extends Controller
         $degree->semesters = $request->semesters;
         $degree->user_id = $request->user_id;
         $degree->description = $request->description;
+        $degree->mode = $request->mode;
         
         $degree->save();
 

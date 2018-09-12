@@ -58,6 +58,16 @@
                             <tr>
                                 <td>
                                     <b>
+                                        {{ __('Modalidad') }}
+                                    </b>
+                                </td>
+                                <td>
+                                    {{ $degree->mode }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>
                                         {{ __('Descripción') }}
                                     </b>
                                 </td>

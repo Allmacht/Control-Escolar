@@ -60,7 +60,7 @@
                             <tr>
                                 <th>{{ __('Clave') }}</th>
                                 <th>{{ __('Nombre') }}</th>
-                                <th>{{ __('Semestres') }}</th>
+                                <th>{{ __('Modalidad') }}</th>
                                 <th>{{ __('Coordinador') }}</th>
                                 <th>{{ __('Acciones') }}</th>
                             </tr>
@@ -70,7 +70,7 @@
                                 <tr>
                                     <th class="align-middle">{{ $degree->card_id }}</th>
                                     <th class="align-middle">{{ $degree->degree_name }}</th>
-                                    <th class="align-middle">{{ $degree->semesters }}</th>
+                                    <th class="align-middle">{{ $degree->mode }}</th>
                                     <th class="align-middle">
                                        
                                         <a href="{{ route('ProfileUser',['id'=>$degree->user->id]) }}" class="btn btn-outline-secondary align-middle" 
@@ -85,7 +85,7 @@
                                             @else
                                                 <img class="rounded-circle align-middle" src="{{ asset('images/default.png') }}" alt="" width="30px">
                                             @endif
-                                            {{ $degree->user->names }}
+                                            {{ $degree->user->name }}
                                         </a>
                                     </th>
                                     <th class="align-middle">

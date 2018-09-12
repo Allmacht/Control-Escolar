@@ -26,6 +26,7 @@ class DegreeSeeder extends Seeder
         $degree->degree_name = "Carrera1";
         $degree->semesters = 6;
         $degree->description = "Descripción de carrera1";
+        $degree->mode = "Licenciatura";
         $degree->user_id = $id;
 
         $degree->save();

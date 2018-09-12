@@ -19,10 +19,11 @@ class CreateDegreesTable extends Migration
             $table->string('degree_name');
             $table->integer('semesters');
             $table->string('description');
+            $table->string('mode');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('status')->default('1');
-            $table->timestamps();
+            $table->timestamps();   
         });
     }
 
