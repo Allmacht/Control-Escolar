@@ -3,6 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row">
+
+            <div class="nav" aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color:white;">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Administrativos') }}</li>
+                </ol>
+            </div>
+
             <div class="col-md-12 py-4">
                 <h3>{{ __('Administrativos') }}</h3>
             </div>

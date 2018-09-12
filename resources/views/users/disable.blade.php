@@ -4,6 +4,13 @@
 
     <div class="container">
         <div class="row">
+            <div class="nav" aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color:white;">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('administrativos') }}">{{ __('Administrativos') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Administrativos desactivados') }}</li>
+                </ol>
+            </div>
 
             <div class="col-md-12 py-4 text-center text-lg-left">
                 <h3>{{ __('Administrativos desactivados') }}</h3>

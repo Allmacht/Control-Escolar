@@ -8,6 +8,13 @@
     </style>
     <div class="container">
         <div class="row">
+            <div class="nav" aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color:white;">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('administrativos') }}">{{ __('Administrativos') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Nuevo registro') }}</li>
+                </ol>
+            </div>
             <div class="col-lg-12 py-3">
                 <h3>{{ __('Registro de personal Administrativo') }}</h3>
                 <hr>
