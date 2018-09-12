@@ -18,7 +18,7 @@
                 <h3>{{ __('Carreras desactivadas') }}</h3>
             </div>
 
-            <div class="col-lg-6 col-md-12 col-sm-12  text-center text-lg-left">
+            <div class="col-lg-6 col-md-12 col-sm-12  text-center text-lg-left mb-2">
                 <a href="{{ route('Degrees') }}" class="btn btn-outline-danger">
                     <span class="fas fa-arrow-left"></span>
                     {{ __(' Atrás') }}

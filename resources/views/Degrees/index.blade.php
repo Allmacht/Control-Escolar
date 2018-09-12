@@ -89,22 +89,26 @@
                                         </a>
                                     </th>
                                     <th class="align-middle">
-                                        <span data-toggle="tooltip" data-placement="left" title="Modificar">
-                                            <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
-                                                <span class="fas fa-edit"></span>
-                                            </a>
-                                        </span>
+                                        @if(Auth::user()->hasRole('Administrador'))
+                                            <span data-toggle="tooltip" data-placement="left" title="Modificar">
+                                                <a href="{{ route('DegreeEdit',['id'=>$degree->id]) }}" class="btn btn-outline-primary">
+                                                    <span class="fas fa-edit"></span>
+                                                </a>
+                                            </span>
+                                        @endif
                                         <span data-toggle="tooltip" data-placement="top" title="Ver">
                                             <a href="{{ route('DegreeShow',['id'=>$degree->id]) }}" class="btn btn-outline-warning">
                                                 <span class="fas fa-eye"></span>
                                             </a>
                                         </span>
-                                        <span data-toggle="tooltip" data-placement="right" title="Desactivar">
-                                            <button class="btn btn-outline-danger open-modal" data-toggle="modal" 
-                                            data-target="#eliminar" data-id="{{ $degree->id }}">
-                                                <span class="fas fa-times-circle"></span>
-                                            </button>
-                                        </span>
+                                        @if(Auth::user()->hasRole('Administrador'))
+                                            <span data-toggle="tooltip" data-placement="right" title="Desactivar">
+                                                <button class="btn btn-outline-danger open-modal" data-toggle="modal" 
+                                                data-target="#eliminar" data-id="{{ $degree->id }}">
+                                                    <span class="fas fa-times-circle"></span>
+                                                </button>
+                                            </span>
+                                        @endif
                                     </th>
                                 </tr>   
                             @empty
