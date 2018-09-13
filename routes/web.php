@@ -104,3 +104,9 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::post('degree/destroy', 'DegreesController@destroy')->name('DegreeDestroy')->middleware('CheckRole:Administrador');
         Route::post('degree/reactivate', 'DegreesController@reactivate')->name('DegreeReactivate')->middleware('CheckRole:Administrador');
     });
+
+    //students
+    Route::group(['middleware'=>['web']], function(){
+        Route::get('students', 'StudentsController@index')->name('Students');
+        Route::get('students/create', 'StudentsController@create')->name('StudentsCreate');
+    });

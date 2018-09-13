@@ -67,11 +67,11 @@
 
                     @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador') || Auth::user()->hasRole('Docente'))
                         <div class="alert alert-danger">
-                            <h4 class="alert-heading">{{ __('Alumnos') }}</h4>
-                            <p>{{ __('Listado de alumnos') }}</p>
+                            <h4 class="alert-heading">{{ __('Estudiantes') }}</h4>
+                            <p>{{ __('Listado completo de estudiantes') }}</p>
                             <hr>
                             <div class="text-right">
-                                <a href="#" class="btn btn-outline-danger" 
+                                <a href="{{ route('Students') }}" class="btn btn-outline-danger" 
                                 data-toggle="tooltip" data-placement="right" title="Ir">
                                     <i class="fas fa-arrow-alt-circle-right"></i>
                                 </a>
