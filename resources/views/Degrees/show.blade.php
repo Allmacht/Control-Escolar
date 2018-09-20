@@ -38,6 +38,16 @@
                             <tr>
                                 <td>
                                     <b>
+                                        {{ __('R.V.O.E.') }}
+                                    </b>
+                                </td>
+                                <td>
+                                    {{ $degree->rvoe }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>
                                         {{ __('Nombre de la carrera') }}
                                     </b>
                                 </td>

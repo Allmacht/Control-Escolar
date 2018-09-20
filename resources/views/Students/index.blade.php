@@ -64,7 +64,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        @foreach ($students as $student)
+                            @if($student->hasRole('Alumno'))
+                                <tr>
+                                    <th class="align-middle">{{ $student->card_id }}</th>
+                                    <th class="align-middle">{{ $student->names }}</th>
+                                    <th class="align-middle">{{ $student->paternal_surname." ".$student->maternal_surname }}</th>
+                                    <th class="align-middle">{{ $student->Degree->degree_name }}</th>
+                                    <th class="align-middle">
+                                        
+                                    </th>
+                                </tr>
+                            @endif
+                        @endforeach
                     </tbody>
                 </table>
             </div>

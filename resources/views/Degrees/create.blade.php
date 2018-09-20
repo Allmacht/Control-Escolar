@@ -41,6 +41,11 @@
                                 required value="{{ old('card_id') }}">
                             </div>
                             <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                <label for="rvoe">{{ __('R.V.O.E') }}</label>
+                                <input type="text" class="form-control" name="rvoe" placeholder="Ingrese RVOE de carrera" 
+                                required value="{{ old('rvoe') }}">
+                            </div>
+                            <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                 <label for="degree_name">{{ __('Nombre') }}</label>
                                 <input type="text" class="form-control" name="degree_name" placeholder="Ingrese nombre de carrera" 
                                 required value="{{ old('degree_name') }}">
@@ -50,7 +55,7 @@
                                 <input type="number" class="form-control" name="semesters" placeholder="Ingrese número de semestres" 
                                 required value="{{ old('semesters') }}">
                             </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                 <label for="user_id">{{ __('Coordinador') }}</label>
                                 <select name="user_id" class="form-control">
                                     @foreach ($users as $user)
@@ -60,11 +65,12 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                 <label for="mode">{{ __('Modalidad') }}</label>
                                 <select name="mode" class="form-control">
                                     <option value="Escolarizada">{{ __('Escolarizada') }}</option>
-                                    <option value="No escolarizada">{{ __('No escolarizada') }}</option>
+                                    <option value="Mixta">{{ __('Mixta') }}</option>
+                                    <option value="TSU">{{ __('TSU') }}</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-12 col-md-6 col-sm-12">

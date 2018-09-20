@@ -42,16 +42,21 @@
                             value="{{ $degree->card_id }}" required>
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <label for="rvoe">{{ __('R.V.O.E.') }}</label>
+                            <input type="text" class="form-control" name="rvoe" placeholder="Ingrese RVOE"
+                            value="{{ $degree->rvoe }}" required> 
+                        </div>
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="degree_name">{{ __('Nombre') }}</label>
                             <input type="text" name="degree_name" class="form-control" placeholder="Ingrese nombre de la carrera" 
                             value="{{ $degree->degree_name }}" required>
                         </div>
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="semesters">{{ __('Semestres') }}</label>
                             <input type="number" name="semesters" class="form-control" placeholder="Ingrese el número de semestres"
                             value="{{ $degree->semesters }}" required>
                         </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="user_id">{{ __('Coordinador') }}</label>
                             <select name="user_id" class="form-control">
                                 @foreach ($users as $user)
@@ -61,18 +66,21 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="mode">{{ __('Modalidad') }}</label>
                             <select name="mode" class="form-control">
                                 <option value="Escolarizada" @if($degree->mode == "Escolarizada") selected="selected" @endif>
                                     {{ __('Escolarizada') }}
                                 </option>
-                                <option value="No escolarizada" @if($degree->mode == "No escolarizada") selected="selected" @endif>
+                                <option value="Mixta" @if($degree->mode == "Mixta") selected="selected" @endif>
                                     {{ __('No escolarizada') }}
+                                </option>
+                                <option value="TSU" @if($degree->mode == "TSU") selected="selected" @endif>
+                                    {{ __('TSU') }}
                                 </option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-12 col-md-6 col-sm-12">
+                        <div class="form-group col-lg-12 col-md-6 col-sm-12 mb-3">
                             <label for="description">{{ __('Descripción') }}</label>
                             <input type="text" name="description" class="form-control" placeholder="Ingrese una descripción breve"
                             value="{{ $degree->description }}">

@@ -72,6 +72,7 @@ class DegreesController extends Controller
         $degree->degree_name = $request->degree_name;
         $degree->semesters = $request->semesters;
         $degree->description = $request->description;
+        $degree->rvoe = $request->rvoe;
         $degree->user_id = $request->user_id;
         $degree->mode =$request->mode;
 
@@ -139,6 +140,7 @@ class DegreesController extends Controller
 
         $degree = Degree::findOrfail($id);
         $degree->card_id = $request->card_id;
+        $degree->rvoe = $request->rvoe;
         $degree->degree_name = $request->degree_name;
         $degree->semesters = $request->semesters;
         $degree->user_id = $request->user_id;

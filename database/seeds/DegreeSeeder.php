@@ -23,6 +23,7 @@ class DegreeSeeder extends Seeder
         
         $degree = new Degree();
         $degree->card_id = "AAAAAAAAA123";
+        $degree->rvoe = "AAAAAAAAA123";
         $degree->degree_name = "Carrera1";
         $degree->semesters = 6;
         $degree->description = "Descripción de carrera1";
