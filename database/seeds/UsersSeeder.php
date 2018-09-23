@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Scholarship;
+use App\office;
 
 class UsersSeeder extends Seeder
 {

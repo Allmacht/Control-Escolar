@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             'permissions',
             'role_has_permissions',
             'model_has_roles',
-            'degrees'
+            'degrees',
+            'offices'
 
         ]);
         // $this->call(UsersTableSeeder::class);
@@ -26,7 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(UsersSeeder::class);
+        $this->call(officeSeeder::class);
         $this->call(DegreeSeeder::class);
+        
        
         
     }
