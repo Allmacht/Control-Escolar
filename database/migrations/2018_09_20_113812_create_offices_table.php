@@ -24,6 +24,8 @@ class CreateOfficesTable extends Migration
             $table->integer('external_number');
             $table->string('internal_number');
             $table->string('zipcode');
+            $table->string('local_phone');
+            $table->string('type');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('status')->default('1');

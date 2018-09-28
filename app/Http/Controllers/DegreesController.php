@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Degree;
 use App\User;
+use App\office;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
 class DegreesController extends Controller
@@ -41,7 +42,8 @@ class DegreesController extends Controller
     public function create()
     {
         $users = User::whereActive('1')->get();
-        return view('Degrees.create', compact('users'));
+        $offices = office::whereStatus('1')->get();
+        return view('Degrees.create', compact('users', 'offices'));
     }
 
     /**
@@ -73,6 +75,7 @@ class DegreesController extends Controller
         $degree->semesters = $request->semesters;
         $degree->description = $request->description;
         $degree->rvoe = $request->rvoe;
+        $degree->office_id = $request->office_id;
         $degree->user_id = $request->user_id;
         $degree->mode =$request->mode;
 
@@ -111,8 +114,9 @@ class DegreesController extends Controller
     public function edit($id)
     {
         $users = User::whereActive('1')->get();
+        $offices = office::whereStatus('1')->get();
         $degree = Degree::findOrfail($id);
-        return view('Degrees.edit', compact('users','degree'));
+        return view('Degrees.edit', compact('users','degree','offices'));
     }
 
     /**
@@ -145,6 +149,7 @@ class DegreesController extends Controller
         $degree->semesters = $request->semesters;
         $degree->user_id = $request->user_id;
         $degree->description = $request->description;
+        $degree->office_id = $request->office_id;
         $degree->mode = $request->mode;
         
         $degree->save();

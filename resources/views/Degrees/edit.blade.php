@@ -51,9 +51,9 @@
                             <input type="text" name="degree_name" class="form-control" placeholder="Ingrese nombre de la carrera" 
                             value="{{ $degree->degree_name }}" required>
                         </div>
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                        <div class="form-group col-lg-2 col-md-6 col-sm-12 mb-3">
                             <label for="semesters">{{ __('Semestres') }}</label>
-                            <input type="number" name="semesters" class="form-control" placeholder="Ingrese el número de semestres"
+                            <input type="number" name="semesters" class="form-control" placeholder="N. de semestres"
                             value="{{ $degree->semesters }}" required>
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
@@ -66,7 +66,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                        <div class="form-group col-lg-2 col-md-6 col-sm-12 mb-3">
                             <label for="mode">{{ __('Modalidad') }}</label>
                             <select name="mode" class="form-control">
                                 <option value="Escolarizada" @if($degree->mode == "Escolarizada") selected="selected" @endif>
@@ -78,6 +78,18 @@
                                 <option value="TSU" @if($degree->mode == "TSU") selected="selected" @endif>
                                     {{ __('TSU') }}
                                 </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <label for="office_id">{{ __('Plantel') }}</label>
+                            <select name="office_id" class="form-control">
+                                @foreach ($offices as $office)
+                                    <option value="{{ $office->id }}"
+                                    @if($office->id == $degree->office_id)
+                                        selected = "selected"
+                                    @endif
+                                        >{{ $office->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-lg-12 col-md-6 col-sm-12 mb-3">

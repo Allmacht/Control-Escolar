@@ -39,8 +39,19 @@
                     </h3>
                 </div>
                 
-
                 <div class="collapse show" id="collapse" >
+                    <div class="alert alert-warning">
+                        <h4 class="alert-heading">{{ __('Planteles') }}</h4>
+                        <p>{{ __('Listado de planteles disponibles') }}</p>
+                        <hr>
+                        <div class="text-right">
+                            <a href="{{ route('Campus') }}" class="btn btn-outline-warning"
+                            data-toggle="tooltip" data-placement="right" title="Ir">
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="alert alert-success">
                         <h4 class="alert-heading">{{ __('Administrativos') }}</h4>
                         <p>{{ __('Listado de personal administrativo') }}</p>

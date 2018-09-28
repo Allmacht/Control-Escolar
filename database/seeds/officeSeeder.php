@@ -32,6 +32,8 @@ class officeSeeder extends Seeder
         $office->external_number ="111";
         $office->internal_number ="111";
         $office->zipcode = "11111";
+        $office->local_phone ="4440000000";
+        $office->type ="Plantel";
         $office->user_id = $id;
 
         $office->save();

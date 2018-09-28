@@ -111,3 +111,17 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('students/create', 'StudentsController@create')->name('StudentsCreate');
         Route::post('students', 'StudentsController@store')->name('StudentCreate');
     });
+
+    //campus
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('campus', 'CampusController@index')->name('Campus');
+        Route::post('campus', 'CampusController@store')->name('CampusStore')->middleware('CheckRole:Administrador');
+        Route::post('campus/disable', 'CampusController@disable')->name('CampusDisable')->middleware('CheckRole:Administrador');
+        Route::get('Campus/create', 'CampusController@create')->name('CampusCreate')->middleware('CheckRole:Administrador');
+        Route::get('Campus/{id}', 'CampusController@show')->where('id','[0-9]+')->name('CampusShow');
+        Route::get('Campus/{id}/edit', 'CampusController@edit')->where('id','[0-9]+')->name('CampusEdit')->middleware('CheckRole:Administrador');
+        Route::post('Campus/{id}/update','CampusController@update')->where('id','[0-9]+')->name('CampusUpdate')->middleware('CheckRole:Administrador');
+        Route::get('Campus/disabled', 'CampusController@disabled')->name('CampusDisabled')->middleware('CheckRole:Administrador');
+        Route::post('Campus/activate', 'CampusController@activate')->name('CampusActivate')->middleware('CheckRole:Administrador');
+        Route::post('Campus/destroy', 'CampusController@destroy')->name('CampusDestroy')->middleware('CheckRole:Administrador');
+    });

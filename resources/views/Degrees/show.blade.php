@@ -78,6 +78,19 @@
                             <tr>
                                 <td>
                                     <b>
+                                        {{ __('Plantel') }}
+                                    </b>
+                                </td>
+                                <td>
+                                    <a href="" class="btn btn-outline-secondary"
+                                    data-toggle="tooltip" data-placement="right" title="Información">
+                                        {{ $degree->office->name }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>
                                         {{ __('Descripción') }}
                                     </b>
                                 </td>
