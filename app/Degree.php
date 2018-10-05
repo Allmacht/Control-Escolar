@@ -13,4 +13,8 @@ class Degree extends Model
     public function office(){
         return $this->belongsTo(office::class);
     }
+
+    public static function Degrees($id){
+        return Degree::where('office_id','=',$id)->get();
+    }
 }

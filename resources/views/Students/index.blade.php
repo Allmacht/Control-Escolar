@@ -28,6 +28,7 @@
                 @endif
             </div>
 
+            
             <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-right">
                 <form action="" method="get">
                     <div class="input-group my-1">
@@ -40,6 +41,7 @@
             </div>
 
             <div class="col-lg-6 col-sm-12 offset-lg-3 py-2">
+
                 @if(session('status'))
                     <div class="col-lg-12">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,11 +53,12 @@
                     </div>
                 @endif
             </div>
-
+            
             <div class="ol-md-12 py-2 my-2 table-responsive">
                 <table class="table table-hover shadow">
                     <thead>
                         <tr>
+                            <th>{{ __('Perfil') }}</th>
                             <th>{{ __('Matrícula') }}</th>
                             <th>{{ __('Nombres') }}</th>
                             <th>{{ __('Apellidos') }}</th>
@@ -67,18 +70,37 @@
                         @foreach ($students as $student)
                             @if($student->hasRole('Alumno'))
                                 <tr>
+                                    @if($student->profile_picture != null)
+                                        <th>
+                                            <img class="rounded-circle" src="/images/profile_pictures/{{ $student->profile_picture }}" alt="" width="40px">
+                                        </th>
+                                    @else
+                                        <th>
+                                            <img class="rounded-circle" src="/images/default.png" alt="" width="40px">
+                                        </th>
+                                    @endif
                                     <th class="align-middle">{{ $student->card_id }}</th>
                                     <th class="align-middle">{{ $student->names }}</th>
                                     <th class="align-middle">{{ $student->paternal_surname." ".$student->maternal_surname }}</th>
                                     <th class="align-middle">{{ $student->Degree->degree_name }}</th>
                                     <th class="align-middle">
-                                        
+                                        <a href="{{ route('ProfileUser', ['id'=>$student->id]) }}" class="btn btn-outline-primary" 
+                                        data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}">
+                                            <i class="fas fa-user-circle"></i>
+                                        </a>
+                                        <a href="{{ route('ProfileEdit',['id'=>$student->id]) }}" class="btn btn-outline-info"
+                                        data-toggle="tooltip" data-placement="top" title="{{ __('Editar perfil') }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
                                     </th>
                                 </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
+                <div class="col-12">
+                    {{ $students->appends(['busqueda'=>$busqueda])->links() }}
+                </div>
             </div>
 
         </div>

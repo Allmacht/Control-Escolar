@@ -41,7 +41,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="names">{{ __('Nombre(s)') }}</label>
                             <input type="text" class="form-control" name="names" 
-                            placeholder="Ingrese nombres de Estudiante" value="{{ old('names') }}" required>
+                            placeholder="Ingrese nombres de estudiante" value="{{ old('names') }}" required>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
@@ -170,32 +170,48 @@
                             placeholder="Descripción de los medicamentos controlados" value="{{ old('medication_description') }}">
                         </div>
 
-                        <div class="div col-lg-6 col-md-6 col-sm-12 mb-3">
-                            <label for="degree_id">{{ __('Carrera') }}</label>
-                            <select name="degree_id" class="form-control">
-                                @foreach ($degrees as $degree)
-                                    <option value="{{ $degree->id }}">{{ $degree->degree_name }}</option>
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3" id="levelDiv">
+                            <label for="level">{{ __('Nivel') }}</label>
+                            <select name="level" class="form-control" id="level" onchange="level1()" onchange="dropdowns()">
+                                <option value="{{ __('Licenciatura') }}">{{ __('Licenciatura') }}</option>
+                                <option value="{{ __('Preparatoria') }}">{{ __('Preparatoria') }}</option>
+                                <option value="{{ __('TSU') }}">{{ __('TSU') }}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <label for="office_id">{{ __('Plantel') }}</label>
+                            <select name="office_id" class="form-control" id="office_id" required onclick="dropdowns()">
+                                <option  disabled selected value="">{{ __('Elige un plantel') }}</option>
+                                @foreach ($offices as $office)
+                                    <option value="{{ $office->id }}">{{ $office->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3" >
+                            <label for="degree_id">{{ __('Carrera') }}</label>
+                            <select name="degree_id" class="form-control" id="degree_id">
+                            </select>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
                             <label for="scholarship_id">{{ __('Beca') }}</label>
                             <select name="scholarship_id" class="form-control">
-                                <option value="0">{{ __('Sin beca') }}</option>
+                                <option value="">{{ __('Sin beca') }}</option>
                                 @foreach ($scholarships as $scholarship)
                                     <option value="{{ $scholarship->id }}">{{ $scholarship->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                             <label for="name">{{ __('Nombre de usuario') }}</label>
                             <input type="text" class="form-control" name="name"
                             placeholder="Ingrese nombre de usuario" value="{{ old('name') }}" required>
                         </div>
 
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                             <label for="email">{{ __('Correo electrónico') }}</label>
                             <input type="email" class="form-control" name="email"
                             placeholder="Ingrese correo electrónico" value="{{ old('email') }}" required>
@@ -216,7 +232,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 text-center mb-5">
-                    <button class="btn btn-outline-success" type="submit">
+                    <button class="btn btn-outline-success" type="submit" id="registrar">
                         <span class="fas fa-edit"></span>
                         {{ __('Registrar') }}
                     </button>
@@ -229,4 +245,7 @@
         </form>
     </div>
 
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/DegreesDropdowns.js') }}"></script>
 @endsection

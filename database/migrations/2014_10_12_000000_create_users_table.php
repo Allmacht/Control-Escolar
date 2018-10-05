@@ -42,6 +42,8 @@ class CreateUsersTable extends Migration
             $table->boolean('controlled_medication');
             $table->string('medication_description')->nullable();
             $table->string('email')->unique();
+            $table->string('level')->nullable(); //Estudiante
+            $table->integer('semester')->nullable();
             $table->string('password');
             $table->unsignedInteger('scholarship_id')->nullable(); //Estudiante
             $table->foreign('scholarship_id')->references('id')->on('scholarships');

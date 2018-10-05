@@ -110,6 +110,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('students', 'StudentsController@index')->name('Students');
         Route::get('students/create', 'StudentsController@create')->name('StudentsCreate');
         Route::post('students', 'StudentsController@store')->name('StudentCreate');
+        Route::get('getdegrees/{id}', 'StudentsController@getDegrees')->name('getDegrees')->where('id','[0-9]+');
     });
 
     //campus
