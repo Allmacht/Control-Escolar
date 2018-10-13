@@ -198,14 +198,18 @@
                                     <label for="local_phone">{{ __('Teléfono local') }}</label>
                                     <input type="text" name="local_phone" class="form-control" @if($edit==false) readonly @endif value="{{ $User->local_phone }}">
                                 </div>
-                                <div class="form-group">
-                                    <label for="professional_license">{{ __('Cédula profesional') }}</label>
-                                    <input type="text" name="professional_license" class="form-control" @if($edit==false) readonly @endif value="{{ $User->professional_license }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="rfc">{{ __('RFC') }}</label>
-                                    <input type="text" name="rfc" class="form-control" @if($edit==false) readonly @endif value="{{ $User->rfc }}">
-                                </div>
+                                
+                                @if ($User->hasRole('Administrador') || $User->hasRole('Docente') || $User->hasRole('Coordinador') || $edit == true )
+                                    <div class="form-group">
+                                        <label for="professional_license">{{ __('Cédula profesional') }}</label>
+                                        <input type="text" name="professional_license" class="form-control" @if($edit==false) readonly @endif value="{{ $User->professional_license }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rfc">{{ __('RFC') }}</label>
+                                        <input type="text" name="rfc" class="form-control" @if($edit==false) readonly @endif value="{{ $User->rfc }}">
+                                    </div>
+                                @endif
+                                
                                 <div class="form-group">
                                     <label for="contact_name">{{ __('En caso de emergencia llamar a :') }}</label>
                                     <input type="text" name="contact_name" class="form-control" @if($edit==false) readonly @endif value="{{ $User->contact_name }}">
@@ -265,11 +269,14 @@
 
                                 <!--Formulario si el usuario es administrador--!>
                                 <form action="{{ route('ProfileAdmon',['id'=>$User->id]) }}" method="post">  
-                                    @csrf  
-                                    <div class="form-group">
-                                        <label for="nip">{{ __('NIP') }}</label>
-                                        <input type="number" name="nip" class="form-control" @if($edit==false) readonly @endif value="{{ $User->nip }}">
-                                    </div>
+                                    @csrf
+                                    @if ($User->hasRole('Coordinador') || $User->hasRole('Administrador') || $User->hasRole('Docente'))
+                                        <div class="form-group">
+                                            <label for="nip">{{ __('NIP') }}</label>
+                                            <input type="number" name="nip" class="form-control" @if($edit==false) readonly @endif value="{{ $User->nip }}">
+                                        </div>
+                                    @endif  
+                                    
                                     <div class="form-group">
                                         <label for="card_id">{{ __('Tarjeta de identificación') }}</label>
                                         <input type="text" name="card_id" class="form-control" @if($edit==false) readonly @endif value="{{ $User->card_id }}">
