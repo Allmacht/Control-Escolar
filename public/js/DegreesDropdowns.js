@@ -6,6 +6,7 @@ function level1() {
         $('#degree_id').prop('required', false);
     }
     else {
+        $('#office_id').val('');
         $('#degree_id').prop('disabled', false);
         $('#degree_id').prop('required', true);
     }
