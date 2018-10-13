@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-md-12 pb-4">
-                <h3>{{ __('Nuevo registro') }}</h3>
+                <h3 id="nombre">{{ __('Nuevo Registro') }}</h3>
             </div>
 
             @if($errors->any())
@@ -41,7 +41,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="names">{{ __('Nombre(s)') }}</label>
                             <input type="text" class="form-control" name="names" 
-                            placeholder="Ingrese nombres de estudiante" value="{{ old('names') }}" required>
+                            placeholder="Ingrese nombres de estudiante" value="{{ old('names') }}" onkeyup="name1(this)" required>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
@@ -172,7 +172,8 @@
 
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3" id="levelDiv">
                             <label for="level">{{ __('Nivel') }}</label>
-                            <select name="level" class="form-control" id="level" onchange="level1()" onchange="dropdowns()">
+                            <select name="level" class="form-control" id="level" onchange="level1()">
+                                <option disabled selected>{{ __('Elige un nivel') }}</option>
                                 <option value="{{ __('Licenciatura') }}">{{ __('Licenciatura') }}</option>
                                 <option value="{{ __('Preparatoria') }}">{{ __('Preparatoria') }}</option>
                                 <option value="{{ __('TSU') }}">{{ __('TSU') }}</option>
@@ -181,7 +182,7 @@
 
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <label for="office_id">{{ __('Plantel') }}</label>
-                            <select name="office_id" class="form-control" id="office_id" required onclick="dropdowns()">
+                            <select name="office_id" class="form-control" id="office_id" required >
                                 <option  disabled selected value="">{{ __('Elige un plantel') }}</option>
                                 @foreach ($offices as $office)
                                     <option value="{{ $office->id }}">{{ $office->name }}</option>
