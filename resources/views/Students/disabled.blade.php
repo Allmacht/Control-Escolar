@@ -1,35 +1,30 @@
 @extends('layouts.app')
-@section('title','Estudiantes')
+@section('title','Estudiantes Desactivados')
 @section('content')
+
     <div class="container">
         <div class="row">
 
             <div class="nav" aria-label="breadcrumb">
                 <ol class="breadcrumb" style="background-color: white;">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">{{ __('Estudiantes') }}</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('Dashboard') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('Students') }}">{{ __('Estudiantes') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Estudiantes desactivados') }}</li>
                 </ol>
             </div>
 
             <div class="col-md-12 py-4">
-                <h3>{{ __('Estudiantes') }}</h3>
+                <h3>{{ __('Estudiantes desactivados') }}</h3>
             </div>
 
-            <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-left">
-                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Coordinador'))
-                    <a href="{{ route('StudentsCreate') }}" class="btn btn-outline-success mb-3">
-                        <span class="fas fa-plus"></span>
-                        {{ __(' Nuevo registro') }}
-                    </a>
-                    <a href="{{ route('StudentsDisabled') }}" class="btn btn-outline-info mb-3">
-                        <span class="fas fa-times"></span>
-                        {{ __('Estudiantes desactivados') }}
-                    </a>
-                @endif
+            <div class="col-lg-6 col-md-12 col-sm-12 text-lg-left">
+                <a href="{{ route('Students') }}" class="btn btn-outline-success mb-3">
+                    <i class="fas fa-chevron-left"></i>
+                    {{ __('Estudiantes') }}
+                </a>
             </div>
 
-            
-            <div class="col-lg-6 col-md-12 col-sm-12 text-center text-lg-right">
+            <div class="col-lg-6 col-md-12 col-sm-12 text-lg-right">
                 <form action="" method="get">
                     <div class="input-group my-1">
                         <input type="text" class="form-control" name="busqueda" placeholder="Buscar..." value="{{ $busqueda }}">
@@ -39,6 +34,7 @@
                     </div>
                 </form>
             </div>
+
 
             <div class="col-lg-6 col-sm-12 offset-lg-3 py-2">
 
@@ -52,9 +48,10 @@
                         </div>
                     </div>
                 @endif
+
             </div>
-            
-            <div class="col-md-12 py-2 my-2 table-responsive">
+
+            <div class="col-md-12 py-2 my-2 responsive-table">
                 <table class="table table-hover shadow">
                     <thead>
                         <tr>
@@ -68,9 +65,9 @@
                     </thead>
                     <tbody>
                         @foreach ($students as $student)
-                            @if($student->hasRole('Alumno'))
+                            @if($student->HasRole('Alumno'))
                                 <tr>
-                                    @if($student->profile_picture != null)
+                                     @if($student->profile_picture != null)
                                         <td>
                                             <img class="rounded-circle" src="/images/profile_pictures/{{ $student->profile_picture }}" alt="" width="40px">
                                         </td>
@@ -82,33 +79,37 @@
                                     <td class="align-middle">{{ $student->card_id }}</td>
                                     <td class="align-middle">{{ $student->names }}</td>
                                     <td class="align-middle">{{ $student->paternal_surname." ".$student->maternal_surname }}</td>
+                                    <td class="align-middle">{{ $student->Degree->degree_name }}</td>
                                     <td class="align-middle">
-                                        @if ($student->_id != null) 
-                                            {{ $student->Degree->degree_name }}
-                                        @else 
-                                            {{ $student->level }} 
-                                        @endif
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="{{ route('ProfileUser', ['id'=>$student->id]) }}" class="btn btn-outline-primary" 
-                                        data-toggle="tooltip" data-placement="left" title="{{ __('Perfil') }}">
-                                            <i class="fas fa-user-circle"></i>
-                                        </a>
-                                        <a href="{{ route('ProfileEdit',['id'=>$student->id]) }}" class="btn btn-outline-info"
-                                        data-toggle="tooltip" data-placement="top" title="{{ __('Editar perfil') }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        <span data-toggle="tooltip" data-placement="left" title="Activar">
+                                            <button class="btn btn-outline-success open-modal" data-id="{{ $student->id }}" data-toggle="modal" data-target="#activar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </span>
+                                        <span data-toggle="tooltip" data-placement="right" title="Eliminar">
+                                             <button class="btn btn-outline-danger open-modal" data-id="{{ $student->id }}" data-toggle="modal" data-target="#eliminar">
+                                                 <i class="fa fa-times-circle"></i>
+                                             </button>
+                                        </span>
+                                       
                                     </td>
                                 </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
-                <div class="col-12">
+                <div class="col-md-12">
                     {{ $students->appends(['busqueda'=>$busqueda])->links() }}
                 </div>
             </div>
-
         </div>
     </div>
+    
+    @include('Students.ModalActivate')
+
+    @include('Students.ModalDelete')
+
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/modalDatos.js') }}"></script>
 @endsection

@@ -46,6 +46,14 @@ class StudentsController extends Controller
         endif;
     }
 
+    public function disabled(){
+        $busqueda = Input::get('busqueda');
+        $students = User::whereActive('0')
+            ->where(DB::raw("CONCAT(card_id,' ',names,' ',maternal_surname,' ',paternal_surname,' ',level)"),'like',"%$busqueda%")
+            ->paginate(15);
+        return view('Students.disabled', compact('students','busqueda'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -201,8 +209,19 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function activate(Request $request){
+
+        $student = User::findOrfail($request->id);
+        $student->active = '1';
+        $student->save();
+        return redirect()->route('StudentsDisabled')->withStatus('Cuenta activada correctamente');
+    }
+
+    public function destroy(Request $request)
     {
-        //
+        $student = User::findOrfail($request->id);
+        $student->delete();
+        return redirect()->route('StudentsDisabled')->withStatus('Cuenta eliminada correctamente');
     }
 }

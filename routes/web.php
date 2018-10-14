@@ -111,6 +111,9 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('students/create', 'StudentsController@create')->name('StudentsCreate');
         Route::post('students', 'StudentsController@store')->name('StudentCreate');
         Route::get('getdegrees/{id}', 'StudentsController@getDegrees')->name('getDegrees')->where('id','[0-9]+');
+        Route::get('students/disabled', 'StudentsController@disabled')->name('StudentsDisabled')->middleware('CheckRole:Administrador');
+        Route::post('students/delete', 'StudentsController@destroy')->name('StudentsDelete')->middleware('CheckRole:Administrador');
+        Route::post('Students/activate', 'StudentsController@activate')->name('StudentsActivate')->middleware('CheckRole:Administrador');
     });
 
     //campus

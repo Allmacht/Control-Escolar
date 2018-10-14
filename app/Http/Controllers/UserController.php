@@ -210,7 +210,10 @@ class UserController extends Controller
            return redirect()->route('inicio')->withErrors('Su cuenta ha sido desactivada');
         else:
             if ($user->hasRole('Administrador') || $user->hasRole('Coordinador')):
-                return redirect()->route('administrativos')->with('status', 'Usuario desactivado correctamente');
+                return redirect()->route('administrativos')->withStatus('Usuario desactivado correctamente');
+            endif;
+            if ($user->hasRole('Alumno')):
+                return redirect()->route('Students')->withStatus('Alumno desactivado correctamente');
             endif;
         endif;
     }
